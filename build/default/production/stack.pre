@@ -1,0 +1,18 @@
+
+# 1 "stack.c"
+
+# 14 "stack.h"
+typedef struct process{
+unsigned char id;
+unsigned char cap;
+unsigned char deadline;
+void (*pFun)();
+unsigned char flage;
+}PROCESS;
+
+typedef struct stack{
+PROCESS proces[3];
+int top;
+
+}STACK;
+

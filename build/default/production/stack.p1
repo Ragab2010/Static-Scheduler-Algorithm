@@ -1,0 +1,12 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[; ;stack.h: 14: typedef struct process{
+[; ;stack.h: 15: unsigned char id;
+[; ;stack.h: 16: unsigned char cap;
+[; ;stack.h: 17: unsigned char deadline;
+[; ;stack.h: 18: void (*pFun)();
+[; ;stack.h: 19: unsigned char flage;
+[; ;stack.h: 20: }PROCESS;
+[; ;stack.h: 22: typedef struct stack{
+[; ;stack.h: 23: PROCESS proces[3];
+[; ;stack.h: 24: int top;
+[; ;stack.h: 26: }STACK;

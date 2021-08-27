@@ -1,0 +1,2697 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.45 build -152302408 
+                                                                                               Wed May 16 04:51:00 2018
+
+Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160504
+     1                           	processor	16F877A
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataBANK1,global,class=CODE,delta=2
+     5                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	dataBANK1,global,class=BANK1,space=1,delta=1
+     9                           	psect	inittext,global,class=CODE,delta=2
+    10                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    11                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    12                           	psect	maintext,global,class=CODE,split=1,delta=2
+    13                           	psect	text1,local,class=CODE,merge=1,delta=2
+    14                           	psect	text2,local,class=CODE,merge=1,delta=2
+    15                           	psect	text3,local,class=CODE,merge=1,delta=2
+    16                           	psect	text4,local,class=CODE,merge=1,delta=2
+    17                           	psect	text5,local,class=CODE,merge=1,delta=2
+    18                           	psect	text6,local,class=CODE,merge=1,delta=2
+    19                           	psect	text7,local,class=CODE,merge=1,delta=2
+    20                           	psect	text8,local,class=CODE,merge=1,delta=2,group=2
+    21                           	psect	text9,local,class=CODE,merge=1,delta=2
+    22                           	psect	intentry,global,class=CODE,delta=2
+    23                           	psect	text10,local,class=CODE,merge=1,delta=2
+    24                           	psect	text11,local,class=CODE,merge=1,delta=2
+    25                           	psect	text12,local,class=CODE,merge=1,delta=2
+    26                           	psect	functab,global,class=ENTRY,delta=2
+    27                           	dabs	1,0x7E,2
+    28  0000                     
+    29                           ; Version 1.45
+    30                           ; Generated 16/11/2017 GMT
+    31                           ; 
+    32                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    33                           ; All rights reserved.
+    34                           ; 
+    35                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    36                           ; 
+    37                           ; Redistribution and use in source and binary forms, with or without modification, are
+    38                           ; permitted provided that the following conditions are met:
+    39                           ; 
+    40                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    41                           ;        conditions and the following disclaimer.
+    42                           ; 
+    43                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    44                           ;        of conditions and the following disclaimer in the documentation and/or other
+    45                           ;        materials provided with the distribution.
+    46                           ; 
+    47                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    48                           ;        software without specific prior written permission.
+    49                           ; 
+    50                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    51                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    52                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    53                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    54                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    55                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    56                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    57                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    58                           ; 
+    59                           ; 
+    60                           ; Code-generator required, PIC16F877A Definitions
+    61                           ; 
+    62                           ; SFR Addresses
+    63  0000                     	;# 
+    64  0001                     	;# 
+    65  0002                     	;# 
+    66  0003                     	;# 
+    67  0004                     	;# 
+    68  0005                     	;# 
+    69  0006                     	;# 
+    70  0007                     	;# 
+    71  0008                     	;# 
+    72  0009                     	;# 
+    73  000A                     	;# 
+    74  000B                     	;# 
+    75  000C                     	;# 
+    76  000D                     	;# 
+    77  000E                     	;# 
+    78  000E                     	;# 
+    79  000F                     	;# 
+    80  0010                     	;# 
+    81  0011                     	;# 
+    82  0012                     	;# 
+    83  0013                     	;# 
+    84  0014                     	;# 
+    85  0015                     	;# 
+    86  0015                     	;# 
+    87  0016                     	;# 
+    88  0017                     	;# 
+    89  0018                     	;# 
+    90  0019                     	;# 
+    91  001A                     	;# 
+    92  001B                     	;# 
+    93  001B                     	;# 
+    94  001C                     	;# 
+    95  001D                     	;# 
+    96  001E                     	;# 
+    97  001F                     	;# 
+    98  0081                     	;# 
+    99  0085                     	;# 
+   100  0086                     	;# 
+   101  0087                     	;# 
+   102  0088                     	;# 
+   103  0089                     	;# 
+   104  008C                     	;# 
+   105  008D                     	;# 
+   106  008E                     	;# 
+   107  0091                     	;# 
+   108  0092                     	;# 
+   109  0093                     	;# 
+   110  0094                     	;# 
+   111  0098                     	;# 
+   112  0099                     	;# 
+   113  009C                     	;# 
+   114  009D                     	;# 
+   115  009E                     	;# 
+   116  009F                     	;# 
+   117  010C                     	;# 
+   118  010D                     	;# 
+   119  010E                     	;# 
+   120  010F                     	;# 
+   121  018C                     	;# 
+   122  018D                     	;# 
+   123  0000                     	;# 
+   124  0001                     	;# 
+   125  0002                     	;# 
+   126  0003                     	;# 
+   127  0004                     	;# 
+   128  0005                     	;# 
+   129  0006                     	;# 
+   130  0007                     	;# 
+   131  0008                     	;# 
+   132  0009                     	;# 
+   133  000A                     	;# 
+   134  000B                     	;# 
+   135  000C                     	;# 
+   136  000D                     	;# 
+   137  000E                     	;# 
+   138  000E                     	;# 
+   139  000F                     	;# 
+   140  0010                     	;# 
+   141  0011                     	;# 
+   142  0012                     	;# 
+   143  0013                     	;# 
+   144  0014                     	;# 
+   145  0015                     	;# 
+   146  0015                     	;# 
+   147  0016                     	;# 
+   148  0017                     	;# 
+   149  0018                     	;# 
+   150  0019                     	;# 
+   151  001A                     	;# 
+   152  001B                     	;# 
+   153  001B                     	;# 
+   154  001C                     	;# 
+   155  001D                     	;# 
+   156  001E                     	;# 
+   157  001F                     	;# 
+   158  0081                     	;# 
+   159  0085                     	;# 
+   160  0086                     	;# 
+   161  0087                     	;# 
+   162  0088                     	;# 
+   163  0089                     	;# 
+   164  008C                     	;# 
+   165  008D                     	;# 
+   166  008E                     	;# 
+   167  0091                     	;# 
+   168  0092                     	;# 
+   169  0093                     	;# 
+   170  0094                     	;# 
+   171  0098                     	;# 
+   172  0099                     	;# 
+   173  009C                     	;# 
+   174  009D                     	;# 
+   175  009E                     	;# 
+   176  009F                     	;# 
+   177  010C                     	;# 
+   178  010D                     	;# 
+   179  010E                     	;# 
+   180  010F                     	;# 
+   181  018C                     	;# 
+   182  018D                     	;# 
+   183                           
+   184                           	psect	idataBANK1
+   185  052E                     __pidataBANK1:	
+   186                           
+   187                           ;initializer for main@F1307
+   188  052E  3401               	retlw	1
+   189  052F  3404               	retlw	4
+   190  0530  3414               	retlw	20
+   191  0531  3407               	retlw	low (fp__process1-fpbase)
+   192  0532  3401               	retlw	1
+   193  0533  3402               	retlw	2
+   194  0534  3414               	retlw	20
+   195  0535  3450               	retlw	80
+   196  0536  3404               	retlw	low (fp__process2-fpbase)
+   197  0537  3401               	retlw	1
+   198  0538  3403               	retlw	3
+   199  0539  3450               	retlw	80
+   200  053A  3478               	retlw	120
+   201  053B  3401               	retlw	low (fp__process3-fpbase)
+   202  053C  3401               	retlw	1
+   203                           
+   204                           	psect	nvBANK0
+   205  0068                     __pnvBANK0:	
+   206  0068                     _pSTACK:	
+   207  0068                     	ds	1
+   208  0069                     _pISR:	
+   209  0069                     	ds	1
+   210  0010                     _T1CONbits	set	16
+   211  000B                     _INTCONbits	set	11
+   212  000C                     _PIR1bits	set	12
+   213  000F                     _TMR1H	set	15
+   214  000E                     _TMR1L	set	14
+   215  0006                     _PORTBbits	set	6
+   216  005F                     _GIE	set	95
+   217  008C                     _PIE1bits	set	140
+   218  0086                     _TRISBbits	set	134
+   219                           
+   220                           ; #config settings
+   221  0000                     
+   222                           	psect	cinit
+   223  0015                     start_initialization:	
+   224  0015                     __initialization:	
+   225                           
+   226                           ; Initialize objects allocated to BANK1
+   227  0015  1383               	bcf	3,7	;select IRP bank0
+   228  0016  30AF               	movlw	low (__pdataBANK1+15)
+   229  0017  00FD               	movwf	btemp+-1
+   230  0018  3005               	movlw	high __pidataBANK1
+   231  0019  00FE               	movwf	btemp
+   232  001A  302E               	movlw	low __pidataBANK1
+   233  001B  00FF               	movwf	btemp+1
+   234  001C  30A0               	movlw	low __pdataBANK1
+   235  001D  0084               	movwf	4
+   236  001E  120A  118A  24EF   	fcall	init_ram0
+   237                           
+   238                           ; Clear objects allocated to COMMON
+   239  0021  01F7               	clrf	__pbssCOMMON& (0+127)
+   240  0022  01F8               	clrf	(__pbssCOMMON+1)& (0+127)
+   241  0023  01F9               	clrf	(__pbssCOMMON+2)& (0+127)
+   242  0024  01FA               	clrf	(__pbssCOMMON+3)& (0+127)
+   243  0025                     end_of_initialization:	
+   244                           ;End of C runtime variable initialization code
+   245                           
+   246  0025                     __end_of__initialization:	
+   247  0025  0183               	clrf	3
+   248  0026  120A  118A  2CA7   	ljmp	_main	;jump to C main() function
+   249                           
+   250                           	psect	bssCOMMON
+   251  0077                     __pbssCOMMON:	
+   252  0077                     _top:	
+   253  0077                     	ds	1
+   254  0078                     _p2:	
+   255  0078                     	ds	1
+   256  0079                     _p1:	
+   257  0079                     	ds	1
+   258  007A                     _i:	
+   259  007A                     	ds	1
+   260                           
+   261                           	psect	dataBANK1
+   262  00A0                     __pdataBANK1:	
+   263  00A0                     main@F1307:	
+   264  00A0                     	ds	15
+   265                           
+   266                           	psect	inittext
+   267  04EB                     init_fetch0:	
+   268                           ;	Called with low address in FSR and high address in W
+   269                           
+   270  04EB  087E               	movf	126,w
+   271  04EC  008A               	movwf	10
+   272  04ED  087F               	movf	127,w
+   273  04EE  0082               	movwf	2
+   274  04EF                     init_ram0:	
+   275                           ;Called with:
+   276                           ;	high address of idata address in btemp 
+   277                           ;	low address of idata address in btemp+1 
+   278                           ;	low address of data in FSR
+   279                           ;	high address + 1 of data in btemp-1
+   280                           
+   281  04EF  24EB  120A  118A   	fcall	init_fetch0
+   282  04F2  0080               	movwf	0
+   283  04F3  0A84               	incf	4,f
+   284  04F4  0804               	movf	4,w
+   285  04F5  067D               	xorwf	125,w
+   286  04F6  1903               	btfsc	3,2
+   287  04F7  3400               	retlw	0
+   288  04F8  0AFF               	incf	127,f
+   289  04F9  1903               	btfsc	3,2
+   290  04FA  0AFE               	incf	126,f
+   291  04FB  2CEF               	goto	init_ram0
+   292                           
+   293                           	psect	cstackCOMMON
+   294  0070                     __pcstackCOMMON:	
+   295  0070                     ?_process1:	
+   296  0070                     ?_process2:	
+   297                           ; 1 bytes @ 0x0
+   298                           
+   299  0070                     ?_process3:	
+   300                           ; 1 bytes @ 0x0
+   301                           
+   302  0070                     ?_init_led:	
+   303                           ; 1 bytes @ 0x0
+   304                           
+   305  0070                     ?_ISR:	
+   306                           ; 1 bytes @ 0x0
+   307                           
+   308  0070                     ?_timer1_init:	
+   309                           ; 1 bytes @ 0x0
+   310                           
+   311  0070                     ?i1_process1:	
+   312                           ; 1 bytes @ 0x0
+   313                           
+   314  0070                     ??i1_process1:	
+   315                           ; 1 bytes @ 0x0
+   316                           
+   317  0070                     ?i1_process2:	
+   318                           ; 1 bytes @ 0x0
+   319                           
+   320  0070                     ??i1_process2:	
+   321                           ; 1 bytes @ 0x0
+   322                           
+   323  0070                     ?i1_process3:	
+   324                           ; 1 bytes @ 0x0
+   325                           
+   326  0070                     ??i1_process3:	
+   327                           ; 1 bytes @ 0x0
+   328                           
+   329  0070                     ?_main:	
+   330                           ; 1 bytes @ 0x0
+   331                           
+   332                           
+   333                           ; 2 bytes @ 0x0
+   334  0070                     	ds	2
+   335  0072                     ??_ISR:	
+   336                           
+   337                           ; 1 bytes @ 0x2
+   338  0072                     	ds	5
+   339                           
+   340                           	psect	cstackBANK0
+   341  0020                     __pcstackBANK0:	
+   342  0020                     ??_process1:	
+   343  0020                     ??_process2:	
+   344                           ; 1 bytes @ 0x0
+   345                           
+   346  0020                     ??_process3:	
+   347                           ; 1 bytes @ 0x0
+   348                           
+   349  0020                     ??_init_led:	
+   350                           ; 1 bytes @ 0x0
+   351                           
+   352  0020                     ??_timer1_init:	
+   353                           ; 1 bytes @ 0x0
+   354                           
+   355  0020                     ?___bmul:	
+   356                           ; 1 bytes @ 0x0
+   357                           
+   358  0020                     ___bmul@multiplicand:	
+   359                           ; 1 bytes @ 0x0
+   360                           
+   361                           
+   362                           ; 1 bytes @ 0x0
+   363  0020                     	ds	1
+   364  0021                     ??___bmul:	
+   365                           
+   366                           ; 1 bytes @ 0x1
+   367  0021                     	ds	1
+   368  0022                     ___bmul@product:	
+   369                           
+   370                           ; 1 bytes @ 0x2
+   371  0022                     	ds	1
+   372  0023                     ___bmul@multiplier:	
+   373                           
+   374                           ; 1 bytes @ 0x3
+   375  0023                     	ds	1
+   376  0024                     ?_LCM:	
+   377  0024                     LCM@num_process:	
+   378                           ; 1 bytes @ 0x4
+   379                           
+   380                           
+   381                           ; 1 bytes @ 0x4
+   382  0024                     	ds	1
+   383  0025                     ??_LCM:	
+   384                           
+   385                           ; 1 bytes @ 0x5
+   386  0025                     	ds	5
+   387  002A                     LCM@max_per:	
+   388                           
+   389                           ; 1 bytes @ 0xA
+   390  002A                     	ds	1
+   391  002B                     LCM@j:	
+   392                           
+   393                           ; 1 bytes @ 0xB
+   394  002B                     	ds	1
+   395  002C                     LCM@index:	
+   396                           
+   397                           ; 1 bytes @ 0xC
+   398  002C                     	ds	1
+   399  002D                     LCM@temp:	
+   400                           
+   401                           ; 5 bytes @ 0xD
+   402  002D                     	ds	5
+   403  0032                     LCM@i:	
+   404                           
+   405                           ; 1 bytes @ 0x12
+   406  0032                     	ds	1
+   407  0033                     LCM@p:	
+   408                           
+   409                           ; 1 bytes @ 0x13
+   410  0033                     	ds	1
+   411  0034                     ?_RMS_Scheduler:	
+   412  0034                     RMS_Scheduler@ps:	
+   413                           ; 1 bytes @ 0x14
+   414                           
+   415                           
+   416                           ; 1 bytes @ 0x14
+   417  0034                     	ds	1
+   418  0035                     RMS_Scheduler@num_process:	
+   419                           
+   420                           ; 1 bytes @ 0x15
+   421  0035                     	ds	1
+   422  0036                     ??_RMS_Scheduler:	
+   423                           
+   424                           ; 1 bytes @ 0x16
+   425  0036                     	ds	7
+   426  003D                     RMS_Scheduler@p:	
+   427                           
+   428                           ; 1 bytes @ 0x1D
+   429  003D                     	ds	1
+   430  003E                     RMS_Scheduler@excute_state:	
+   431                           
+   432                           ; 5 bytes @ 0x1E
+   433  003E                     	ds	5
+   434  0043                     RMS_Scheduler@i:	
+   435                           
+   436                           ; 1 bytes @ 0x23
+   437  0043                     	ds	1
+   438  0044                     ??_main:	
+   439                           
+   440                           ; 1 bytes @ 0x24
+   441  0044                     	ds	4
+   442  0048                     main@p:	
+   443                           
+   444                           ; 15 bytes @ 0x28
+   445  0048                     	ds	15
+   446  0057                     main@S:	
+   447                           
+   448                           ; 17 bytes @ 0x37
+   449  0057                     	ds	17
+   450                           
+   451                           	psect	maintext
+   452  04A7                     __pmaintext:	
+   453 ;;
+   454 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   455 ;;
+   456 ;; *************** function _main *****************
+   457 ;; Defined at:
+   458 ;;		line 67 in file "main.c"
+   459 ;; Parameters:    Size  Location     Type
+   460 ;;		None
+   461 ;; Auto vars:     Size  Location     Type
+   462 ;;  S              17   55[BANK0 ] struct stack
+   463 ;;  p              15   40[BANK0 ] struct process[3]
+   464 ;; Return value:  Size  Location     Type
+   465 ;;                  2   26[None  ] int 
+   466 ;; Registers used:
+   467 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   468 ;; Tracked objects:
+   469 ;;		On entry : B00/0
+   470 ;;		On exit  : 0/0
+   471 ;;		Unchanged: 0/0
+   472 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   473 ;;      Params:         0       0       0       0       0
+   474 ;;      Locals:         0      32       0       0       0
+   475 ;;      Temps:          0       4       0       0       0
+   476 ;;      Totals:         0      36       0       0       0
+   477 ;;Total ram usage:       36 bytes
+   478 ;; Hardware stack levels required when called:    5
+   479 ;; This function calls:
+   480 ;;		_RMS_Scheduler
+   481 ;;		_init_led
+   482 ;; This function is called by:
+   483 ;;		Startup code after reset
+   484 ;; This function uses a non-reentrant model
+   485 ;;
+   486                           
+   487                           
+   488                           ;psect for function _main
+   489  04A7                     _main:	
+   490                           
+   491                           ;main.c: 69: PROCESS p[3]={{1 , 4 ,20 ,process1 ,1},
+   492                           ;main.c: 70: {2 , 20 ,80 ,process2,1},
+   493                           ;main.c: 71: {3 , 80 ,120 ,process3 ,1} };
+   494                           
+   495                           ;incstack = 0
+   496                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   497  04A7  3048               	movlw	main@p& (0+255)
+   498  04A8  0084               	movwf	4
+   499  04A9  30A0               	movlw	low main@F1307
+   500  04AA  1283               	bcf	3,5	;RP0=0, select bank0
+   501  04AB  1303               	bcf	3,6	;RP1=0, select bank0
+   502  04AC  00C4               	movwf	??_main
+   503  04AD  0804               	movf	4,w
+   504  04AE  00C5               	movwf	??_main+1
+   505  04AF  300F               	movlw	15
+   506  04B0  00C6               	movwf	??_main+2
+   507  04B1                     u310:	
+   508  04B1  0844               	movf	??_main,w
+   509  04B2  0084               	movwf	4
+   510  04B3  1383               	bcf	3,7	;select IRP bank1
+   511  04B4  0800               	movf	0,w
+   512  04B5  00C7               	movwf	??_main+3
+   513  04B6  0AC4               	incf	??_main,f
+   514  04B7  0845               	movf	??_main+1,w
+   515  04B8  0084               	movwf	4
+   516  04B9  0847               	movf	??_main+3,w
+   517  04BA  0080               	movwf	0
+   518  04BB  0AC5               	incf	??_main+1,f
+   519  04BC  0BC6               	decfsz	??_main+2,f
+   520  04BD  2CB1               	goto	u310
+   521                           
+   522                           ;main.c: 74: STACK S;
+   523                           ;main.c: 76: {(&S)->top = -1;};
+   524  04BE  30FF               	movlw	255
+   525  04BF  00E6               	movwf	main@S+15
+   526  04C0  30FF               	movlw	255
+   527  04C1  00E7               	movwf	main@S+16
+   528                           
+   529                           ;main.c: 79: init_led();
+   530  04C2  120A  118A  255B  120A  118A  	fcall	_init_led
+   531                           
+   532                           ;main.c: 82: RMS_Scheduler(p ,&S , 3 );
+   533  04C7  3057               	movlw	(low (main@S| 0))& (0+255)
+   534  04C8  1283               	bcf	3,5	;RP0=0, select bank0
+   535  04C9  1303               	bcf	3,6	;RP1=0, select bank0
+   536  04CA  00C4               	movwf	??_main
+   537  04CB  0844               	movf	??_main,w
+   538  04CC  00B4               	movwf	RMS_Scheduler@ps
+   539  04CD  3003               	movlw	3
+   540  04CE  00C5               	movwf	??_main+1
+   541  04CF  0845               	movf	??_main+1,w
+   542  04D0  00B5               	movwf	RMS_Scheduler@num_process
+   543  04D1  3048               	movlw	(low (main@p| 0))& (0+255)
+   544  04D2  120A  118A  2244  120A  118A  	fcall	_RMS_Scheduler
+   545  04D7                     l29:	
+   546                           ;main.c: 88: while(1);
+   547                           
+   548  04D7  2CD7               	goto	l29
+   549  04D8                     __end_of_main:	
+   550                           ;main.c: 91: return 0;
+   551                           ;	Return value of _main is never used
+   552                           
+   553                           
+   554                           	psect	text1
+   555  055B                     __ptext1:	
+   556 ;; *************** function _init_led *****************
+   557 ;; Defined at:
+   558 ;;		line 54 in file "main.c"
+   559 ;; Parameters:    Size  Location     Type
+   560 ;;		None
+   561 ;; Auto vars:     Size  Location     Type
+   562 ;;		None
+   563 ;; Return value:  Size  Location     Type
+   564 ;;                  1    wreg      void 
+   565 ;; Registers used:
+   566 ;;		None
+   567 ;; Tracked objects:
+   568 ;;		On entry : 0/0
+   569 ;;		On exit  : 0/0
+   570 ;;		Unchanged: 0/0
+   571 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   572 ;;      Params:         0       0       0       0       0
+   573 ;;      Locals:         0       0       0       0       0
+   574 ;;      Temps:          0       0       0       0       0
+   575 ;;      Totals:         0       0       0       0       0
+   576 ;;Total ram usage:        0 bytes
+   577 ;; Hardware stack levels used:    1
+   578 ;; Hardware stack levels required when called:    2
+   579 ;; This function calls:
+   580 ;;		Nothing
+   581 ;; This function is called by:
+   582 ;;		_main
+   583 ;; This function uses a non-reentrant model
+   584 ;;
+   585                           
+   586                           
+   587                           ;psect for function _init_led
+   588  055B                     _init_led:	
+   589                           
+   590                           ;main.c: 57: TRISBbits.TRISB0 =0;
+   591                           
+   592                           ;incstack = 0
+   593                           ; Regs used in _init_led: []
+   594  055B  1683               	bsf	3,5	;RP0=1, select bank1
+   595  055C  1303               	bcf	3,6	;RP1=0, select bank1
+   596  055D  1006               	bcf	6,0	;volatile
+   597                           
+   598                           ;main.c: 58: TRISBbits.TRISB1 =0;
+   599  055E  1086               	bcf	6,1	;volatile
+   600                           
+   601                           ;main.c: 59: TRISBbits.TRISB2 =0;
+   602  055F  1106               	bcf	6,2	;volatile
+   603                           
+   604                           ;main.c: 60: PORTBbits.RB0=0;
+   605  0560  1283               	bcf	3,5	;RP0=0, select bank0
+   606  0561  1303               	bcf	3,6	;RP1=0, select bank0
+   607  0562  1006               	bcf	6,0	;volatile
+   608                           
+   609                           ;main.c: 61: PORTBbits.RB1=0;
+   610  0563  1086               	bcf	6,1	;volatile
+   611                           
+   612                           ;main.c: 62: PORTBbits.RB2=0;
+   613  0564  1106               	bcf	6,2	;volatile
+   614  0565  0008               	return
+   615  0566                     __end_of_init_led:	
+   616                           
+   617                           	psect	text2
+   618  0244                     __ptext2:	
+   619 ;; *************** function _RMS_Scheduler *****************
+   620 ;; Defined at:
+   621 ;;		line 132 in file "rms.c"
+   622 ;; Parameters:    Size  Location     Type
+   623 ;;  p               1    wreg     PTR struct process
+   624 ;;		 -> main@p(15), 
+   625 ;;  ps              1   20[BANK0 ] PTR struct stack
+   626 ;;		 -> main@S(17), 
+   627 ;;  num_process     1   21[BANK0 ] unsigned char 
+   628 ;; Auto vars:     Size  Location     Type
+   629 ;;  p               1   29[BANK0 ] PTR struct process
+   630 ;;		 -> main@p(15), 
+   631 ;;  excute_state    5   30[BANK0 ] struct process[1]
+   632 ;;  i               1   35[BANK0 ] unsigned char 
+   633 ;; Return value:  Size  Location     Type
+   634 ;;                  1    wreg      unsigned char 
+   635 ;; Registers used:
+   636 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   637 ;; Tracked objects:
+   638 ;;		On entry : 0/0
+   639 ;;		On exit  : 0/0
+   640 ;;		Unchanged: 0/0
+   641 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   642 ;;      Params:         0       2       0       0       0
+   643 ;;      Locals:         0       7       0       0       0
+   644 ;;      Temps:          0       7       0       0       0
+   645 ;;      Totals:         0      16       0       0       0
+   646 ;;Total ram usage:       16 bytes
+   647 ;; Hardware stack levels used:    1
+   648 ;; Hardware stack levels required when called:    4
+   649 ;; This function calls:
+   650 ;;		_LCM
+   651 ;;		___bmul
+   652 ;;		_process1
+   653 ;;		_process2
+   654 ;;		_process3
+   655 ;;		_timer1_init
+   656 ;; This function is called by:
+   657 ;;		_main
+   658 ;; This function uses a non-reentrant model
+   659 ;;
+   660                           
+   661                           
+   662                           ;psect for function _RMS_Scheduler
+   663  0244                     _RMS_Scheduler:	
+   664                           
+   665                           ;incstack = 0
+   666                           ; Regs used in _RMS_Scheduler: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   667                           ;RMS_Scheduler@p stored from wreg
+   668  0244  1283               	bcf	3,5	;RP0=0, select bank0
+   669  0245  1303               	bcf	3,6	;RP1=0, select bank0
+   670  0246  00BD               	movwf	RMS_Scheduler@p
+   671                           
+   672                           ;rms.c: 133: unsigned char i;
+   673                           ;rms.c: 135: PROCESS excute_state[1];
+   674                           ;rms.c: 136: pISR =p;
+   675  0247  083D               	movf	RMS_Scheduler@p,w
+   676  0248  00B6               	movwf	??_RMS_Scheduler
+   677  0249  0836               	movf	??_RMS_Scheduler,w
+   678  024A  00E9               	movwf	_pISR
+   679                           
+   680                           ;rms.c: 137: pSTACK =ps;
+   681  024B  0834               	movf	RMS_Scheduler@ps,w
+   682  024C  00B6               	movwf	??_RMS_Scheduler
+   683  024D  0836               	movf	??_RMS_Scheduler,w
+   684  024E  00E8               	movwf	_pSTACK
+   685                           
+   686                           ;rms.c: 138: LCM(p , num_process);
+   687  024F  0835               	movf	RMS_Scheduler@num_process,w
+   688  0250  00B6               	movwf	??_RMS_Scheduler
+   689  0251  0836               	movf	??_RMS_Scheduler,w
+   690  0252  00A4               	movwf	LCM@num_process
+   691  0253  083D               	movf	RMS_Scheduler@p,w
+   692  0254  120A  118A  2047  120A  118A  	fcall	_LCM
+   693                           
+   694                           ;rms.c: 140: for(i=0 ; i < num_process ; i++){
+   695  0259  1283               	bcf	3,5	;RP0=0, select bank0
+   696  025A  1303               	bcf	3,6	;RP1=0, select bank0
+   697  025B  01C3               	clrf	RMS_Scheduler@i
+   698  025C                     l986:	
+   699  025C  0835               	movf	RMS_Scheduler@num_process,w
+   700  025D  0243               	subwf	RMS_Scheduler@i,w
+   701  025E  1803               	btfsc	3,0
+   702  025F  2B43               	goto	l988
+   703                           
+   704                           ;rms.c: 141: {(ps)->proces[++((ps)->top)].id = p[i].id; (ps)->proces[((ps)->top)].cap = 
+      +                          p[i].cap; (ps)->proces[((ps)->top)].deadline = p[i].deadline; (ps)->proces[((ps)->top)].
+      +                          pFun = p[i].pFun; (ps)->proces[((ps)->top)].flage = p[i].flage;};
+   705  0260  3005               	movlw	5
+   706  0261  00B6               	movwf	??_RMS_Scheduler
+   707  0262  0836               	movf	??_RMS_Scheduler,w
+   708  0263  00A0               	movwf	___bmul@multiplicand
+   709  0264  0843               	movf	RMS_Scheduler@i,w
+   710  0265  120A  118A  24D8  120A  118A  	fcall	___bmul
+   711  026A  1283               	bcf	3,5	;RP0=0, select bank0
+   712  026B  1303               	bcf	3,6	;RP1=0, select bank0
+   713  026C  073D               	addwf	RMS_Scheduler@p,w
+   714  026D  00B7               	movwf	??_RMS_Scheduler+1
+   715  026E  0837               	movf	??_RMS_Scheduler+1,w
+   716  026F  0084               	movwf	4
+   717  0270  1383               	bcf	3,7	;select IRP bank0
+   718  0271  0800               	movf	0,w
+   719  0272  00B8               	movwf	??_RMS_Scheduler+2
+   720  0273  3005               	movlw	5
+   721  0274  00B9               	movwf	??_RMS_Scheduler+3
+   722  0275  0839               	movf	??_RMS_Scheduler+3,w
+   723  0276  00A0               	movwf	___bmul@multiplicand
+   724  0277  0834               	movf	RMS_Scheduler@ps,w
+   725  0278  3E0F               	addlw	15
+   726  0279  0084               	movwf	4
+   727  027A  3001               	movlw	1
+   728  027B  0780               	addwf	0,f
+   729  027C  0A84               	incf	4,f
+   730  027D  1803               	skipnc
+   731  027E  0A80               	incf	0,f
+   732  027F  0384               	decf	4,f
+   733  0280  0800               	movf	0,w
+   734  0281  00BA               	movwf	??_RMS_Scheduler+4
+   735  0282  0A84               	incf	4,f
+   736  0283  0800               	movf	0,w
+   737  0284  00BB               	movwf	??_RMS_Scheduler+5
+   738  0285  083A               	movf	??_RMS_Scheduler+4,w
+   739  0286  120A  118A  24D8  120A  118A  	fcall	___bmul
+   740  028B  1283               	bcf	3,5	;RP0=0, select bank0
+   741  028C  1303               	bcf	3,6	;RP1=0, select bank0
+   742  028D  0734               	addwf	RMS_Scheduler@ps,w
+   743  028E  00BC               	movwf	??_RMS_Scheduler+6
+   744  028F  083C               	movf	??_RMS_Scheduler+6,w
+   745  0290  0084               	movwf	4
+   746  0291  0838               	movf	??_RMS_Scheduler+2,w
+   747  0292  1383               	bcf	3,7	;select IRP bank0
+   748  0293  0080               	movwf	0
+   749  0294  3005               	movlw	5
+   750  0295  00B6               	movwf	??_RMS_Scheduler
+   751  0296  0836               	movf	??_RMS_Scheduler,w
+   752  0297  00A0               	movwf	___bmul@multiplicand
+   753  0298  0843               	movf	RMS_Scheduler@i,w
+   754  0299  120A  118A  24D8  120A  118A  	fcall	___bmul
+   755  029E  1283               	bcf	3,5	;RP0=0, select bank0
+   756  029F  1303               	bcf	3,6	;RP1=0, select bank0
+   757  02A0  073D               	addwf	RMS_Scheduler@p,w
+   758  02A1  00B7               	movwf	??_RMS_Scheduler+1
+   759  02A2  0A37               	incf	??_RMS_Scheduler+1,w
+   760  02A3  0084               	movwf	4
+   761  02A4  1383               	bcf	3,7	;select IRP bank0
+   762  02A5  0800               	movf	0,w
+   763  02A6  00B8               	movwf	??_RMS_Scheduler+2
+   764  02A7  3005               	movlw	5
+   765  02A8  00B9               	movwf	??_RMS_Scheduler+3
+   766  02A9  0839               	movf	??_RMS_Scheduler+3,w
+   767  02AA  00A0               	movwf	___bmul@multiplicand
+   768  02AB  0834               	movf	RMS_Scheduler@ps,w
+   769  02AC  3E0F               	addlw	15
+   770  02AD  0084               	movwf	4
+   771  02AE  0800               	movf	0,w
+   772  02AF  120A  118A  24D8  120A  118A  	fcall	___bmul
+   773  02B4  1283               	bcf	3,5	;RP0=0, select bank0
+   774  02B5  1303               	bcf	3,6	;RP1=0, select bank0
+   775  02B6  0734               	addwf	RMS_Scheduler@ps,w
+   776  02B7  00BA               	movwf	??_RMS_Scheduler+4
+   777  02B8  0A3A               	incf	??_RMS_Scheduler+4,w
+   778  02B9  0084               	movwf	4
+   779  02BA  0838               	movf	??_RMS_Scheduler+2,w
+   780  02BB  1383               	bcf	3,7	;select IRP bank0
+   781  02BC  0080               	movwf	0
+   782  02BD  3005               	movlw	5
+   783  02BE  00B6               	movwf	??_RMS_Scheduler
+   784  02BF  0836               	movf	??_RMS_Scheduler,w
+   785  02C0  00A0               	movwf	___bmul@multiplicand
+   786  02C1  0843               	movf	RMS_Scheduler@i,w
+   787  02C2  120A  118A  24D8  120A  118A  	fcall	___bmul
+   788  02C7  1283               	bcf	3,5	;RP0=0, select bank0
+   789  02C8  1303               	bcf	3,6	;RP1=0, select bank0
+   790  02C9  073D               	addwf	RMS_Scheduler@p,w
+   791  02CA  00B7               	movwf	??_RMS_Scheduler+1
+   792  02CB  0837               	movf	??_RMS_Scheduler+1,w
+   793  02CC  3E02               	addlw	2
+   794  02CD  0084               	movwf	4
+   795  02CE  1383               	bcf	3,7	;select IRP bank0
+   796  02CF  0800               	movf	0,w
+   797  02D0  00B8               	movwf	??_RMS_Scheduler+2
+   798  02D1  3005               	movlw	5
+   799  02D2  00B9               	movwf	??_RMS_Scheduler+3
+   800  02D3  0839               	movf	??_RMS_Scheduler+3,w
+   801  02D4  00A0               	movwf	___bmul@multiplicand
+   802  02D5  0834               	movf	RMS_Scheduler@ps,w
+   803  02D6  3E0F               	addlw	15
+   804  02D7  0084               	movwf	4
+   805  02D8  0800               	movf	0,w
+   806  02D9  120A  118A  24D8  120A  118A  	fcall	___bmul
+   807  02DE  1283               	bcf	3,5	;RP0=0, select bank0
+   808  02DF  1303               	bcf	3,6	;RP1=0, select bank0
+   809  02E0  0734               	addwf	RMS_Scheduler@ps,w
+   810  02E1  00BA               	movwf	??_RMS_Scheduler+4
+   811  02E2  083A               	movf	??_RMS_Scheduler+4,w
+   812  02E3  3E02               	addlw	2
+   813  02E4  0084               	movwf	4
+   814  02E5  0838               	movf	??_RMS_Scheduler+2,w
+   815  02E6  1383               	bcf	3,7	;select IRP bank0
+   816  02E7  0080               	movwf	0
+   817  02E8  3005               	movlw	5
+   818  02E9  00B6               	movwf	??_RMS_Scheduler
+   819  02EA  0836               	movf	??_RMS_Scheduler,w
+   820  02EB  00A0               	movwf	___bmul@multiplicand
+   821  02EC  0843               	movf	RMS_Scheduler@i,w
+   822  02ED  120A  118A  24D8  120A  118A  	fcall	___bmul
+   823  02F2  1283               	bcf	3,5	;RP0=0, select bank0
+   824  02F3  1303               	bcf	3,6	;RP1=0, select bank0
+   825  02F4  073D               	addwf	RMS_Scheduler@p,w
+   826  02F5  00B7               	movwf	??_RMS_Scheduler+1
+   827  02F6  0837               	movf	??_RMS_Scheduler+1,w
+   828  02F7  3E03               	addlw	3
+   829  02F8  0084               	movwf	4
+   830  02F9  1383               	bcf	3,7	;select IRP bank0
+   831  02FA  0800               	movf	0,w
+   832  02FB  00B8               	movwf	??_RMS_Scheduler+2
+   833  02FC  3005               	movlw	5
+   834  02FD  00B9               	movwf	??_RMS_Scheduler+3
+   835  02FE  0839               	movf	??_RMS_Scheduler+3,w
+   836  02FF  00A0               	movwf	___bmul@multiplicand
+   837  0300  0834               	movf	RMS_Scheduler@ps,w
+   838  0301  3E0F               	addlw	15
+   839  0302  0084               	movwf	4
+   840  0303  0800               	movf	0,w
+   841  0304  120A  118A  24D8  120A  118A  	fcall	___bmul
+   842  0309  1283               	bcf	3,5	;RP0=0, select bank0
+   843  030A  1303               	bcf	3,6	;RP1=0, select bank0
+   844  030B  0734               	addwf	RMS_Scheduler@ps,w
+   845  030C  00BA               	movwf	??_RMS_Scheduler+4
+   846  030D  083A               	movf	??_RMS_Scheduler+4,w
+   847  030E  3E03               	addlw	3
+   848  030F  0084               	movwf	4
+   849  0310  0838               	movf	??_RMS_Scheduler+2,w
+   850  0311  1383               	bcf	3,7	;select IRP bank0
+   851  0312  0080               	movwf	0
+   852  0313  3005               	movlw	5
+   853  0314  00B6               	movwf	??_RMS_Scheduler
+   854  0315  0836               	movf	??_RMS_Scheduler,w
+   855  0316  00A0               	movwf	___bmul@multiplicand
+   856  0317  0843               	movf	RMS_Scheduler@i,w
+   857  0318  120A  118A  24D8  120A  118A  	fcall	___bmul
+   858  031D  1283               	bcf	3,5	;RP0=0, select bank0
+   859  031E  1303               	bcf	3,6	;RP1=0, select bank0
+   860  031F  073D               	addwf	RMS_Scheduler@p,w
+   861  0320  00B7               	movwf	??_RMS_Scheduler+1
+   862  0321  0837               	movf	??_RMS_Scheduler+1,w
+   863  0322  3E04               	addlw	4
+   864  0323  0084               	movwf	4
+   865  0324  1383               	bcf	3,7	;select IRP bank0
+   866  0325  0800               	movf	0,w
+   867  0326  00B8               	movwf	??_RMS_Scheduler+2
+   868  0327  3005               	movlw	5
+   869  0328  00B9               	movwf	??_RMS_Scheduler+3
+   870  0329  0839               	movf	??_RMS_Scheduler+3,w
+   871  032A  00A0               	movwf	___bmul@multiplicand
+   872  032B  0834               	movf	RMS_Scheduler@ps,w
+   873  032C  3E0F               	addlw	15
+   874  032D  0084               	movwf	4
+   875  032E  0800               	movf	0,w
+   876  032F  120A  118A  24D8  120A  118A  	fcall	___bmul
+   877  0334  1283               	bcf	3,5	;RP0=0, select bank0
+   878  0335  1303               	bcf	3,6	;RP1=0, select bank0
+   879  0336  0734               	addwf	RMS_Scheduler@ps,w
+   880  0337  00BA               	movwf	??_RMS_Scheduler+4
+   881  0338  083A               	movf	??_RMS_Scheduler+4,w
+   882  0339  3E04               	addlw	4
+   883  033A  0084               	movwf	4
+   884  033B  0838               	movf	??_RMS_Scheduler+2,w
+   885  033C  1383               	bcf	3,7	;select IRP bank0
+   886  033D  0080               	movwf	0
+   887  033E  3001               	movlw	1
+   888  033F  00B6               	movwf	??_RMS_Scheduler
+   889  0340  0836               	movf	??_RMS_Scheduler,w
+   890  0341  07C3               	addwf	RMS_Scheduler@i,f
+   891  0342  2A5C               	goto	l986
+   892  0343                     l988:	
+   893                           
+   894                           ;rms.c: 142: }
+   895                           ;rms.c: 143: timer1_init();
+   896  0343  120A  118A  24FC  120A  118A  	fcall	_timer1_init
+   897  0348                     l990:	
+   898                           ;rms.c: 144: for(;;){
+   899                           
+   900                           
+   901                           ;rms.c: 146: {excute_state[i].id = (ps)->proces[((ps)->top)].id ; excute_state[i].cap = 
+      +                          (ps)->proces[((ps)->top)].cap; excute_state[i].deadline = (ps)->proces[((ps)->top)].dead
+      +                          line ; excute_state[i].pFun = (ps)->proces[((ps)->top)].pFun; excute_state[i].flage = (
+   902  0348  3005               	movlw	5
+   903  0349  1283               	bcf	3,5	;RP0=0, select bank0
+   904  034A  1303               	bcf	3,6	;RP1=0, select bank0
+   905  034B  00B6               	movwf	??_RMS_Scheduler
+   906  034C  0836               	movf	??_RMS_Scheduler,w
+   907  034D  00A0               	movwf	___bmul@multiplicand
+   908  034E  0834               	movf	RMS_Scheduler@ps,w
+   909  034F  3E0F               	addlw	15
+   910  0350  0084               	movwf	4
+   911  0351  1383               	bcf	3,7	;select IRP bank0
+   912  0352  0800               	movf	0,w
+   913  0353  120A  118A  24D8  120A  118A  	fcall	___bmul
+   914  0358  1283               	bcf	3,5	;RP0=0, select bank0
+   915  0359  1303               	bcf	3,6	;RP1=0, select bank0
+   916  035A  0734               	addwf	RMS_Scheduler@ps,w
+   917  035B  00B7               	movwf	??_RMS_Scheduler+1
+   918  035C  0837               	movf	??_RMS_Scheduler+1,w
+   919  035D  0084               	movwf	4
+   920  035E  1383               	bcf	3,7	;select IRP bank0
+   921  035F  0800               	movf	0,w
+   922  0360  00B8               	movwf	??_RMS_Scheduler+2
+   923  0361  3005               	movlw	5
+   924  0362  00B9               	movwf	??_RMS_Scheduler+3
+   925  0363  0839               	movf	??_RMS_Scheduler+3,w
+   926  0364  00A0               	movwf	___bmul@multiplicand
+   927  0365  0843               	movf	RMS_Scheduler@i,w
+   928  0366  120A  118A  24D8  120A  118A  	fcall	___bmul
+   929  036B  3E3E               	addlw	(low (RMS_Scheduler@excute_state| 0))& (0+255)
+   930  036C  0084               	movwf	4
+   931  036D  1283               	bcf	3,5	;RP0=0, select bank0
+   932  036E  1303               	bcf	3,6	;RP1=0, select bank0
+   933  036F  0838               	movf	??_RMS_Scheduler+2,w
+   934  0370  1383               	bcf	3,7	;select IRP bank0
+   935  0371  0080               	movwf	0
+   936  0372  3005               	movlw	5
+   937  0373  00B6               	movwf	??_RMS_Scheduler
+   938  0374  0836               	movf	??_RMS_Scheduler,w
+   939  0375  00A0               	movwf	___bmul@multiplicand
+   940  0376  0834               	movf	RMS_Scheduler@ps,w
+   941  0377  3E0F               	addlw	15
+   942  0378  0084               	movwf	4
+   943  0379  0800               	movf	0,w
+   944  037A  120A  118A  24D8  120A  118A  	fcall	___bmul
+   945  037F  1283               	bcf	3,5	;RP0=0, select bank0
+   946  0380  1303               	bcf	3,6	;RP1=0, select bank0
+   947  0381  0734               	addwf	RMS_Scheduler@ps,w
+   948  0382  00B7               	movwf	??_RMS_Scheduler+1
+   949  0383  0A37               	incf	??_RMS_Scheduler+1,w
+   950  0384  0084               	movwf	4
+   951  0385  1383               	bcf	3,7	;select IRP bank0
+   952  0386  0800               	movf	0,w
+   953  0387  00B8               	movwf	??_RMS_Scheduler+2
+   954  0388  3005               	movlw	5
+   955  0389  00B9               	movwf	??_RMS_Scheduler+3
+   956  038A  0839               	movf	??_RMS_Scheduler+3,w
+   957  038B  00A0               	movwf	___bmul@multiplicand
+   958  038C  0843               	movf	RMS_Scheduler@i,w
+   959  038D  120A  118A  24D8  120A  118A  	fcall	___bmul
+   960  0392  3E01               	addlw	1
+   961  0393  3E3E               	addlw	(low (RMS_Scheduler@excute_state| 0))& (0+255)
+   962  0394  0084               	movwf	4
+   963  0395  1283               	bcf	3,5	;RP0=0, select bank0
+   964  0396  1303               	bcf	3,6	;RP1=0, select bank0
+   965  0397  0838               	movf	??_RMS_Scheduler+2,w
+   966  0398  1383               	bcf	3,7	;select IRP bank0
+   967  0399  0080               	movwf	0
+   968  039A  3005               	movlw	5
+   969  039B  00B6               	movwf	??_RMS_Scheduler
+   970  039C  0836               	movf	??_RMS_Scheduler,w
+   971  039D  00A0               	movwf	___bmul@multiplicand
+   972  039E  0834               	movf	RMS_Scheduler@ps,w
+   973  039F  3E0F               	addlw	15
+   974  03A0  0084               	movwf	4
+   975  03A1  0800               	movf	0,w
+   976  03A2  120A  118A  24D8  120A  118A  	fcall	___bmul
+   977  03A7  1283               	bcf	3,5	;RP0=0, select bank0
+   978  03A8  1303               	bcf	3,6	;RP1=0, select bank0
+   979  03A9  0734               	addwf	RMS_Scheduler@ps,w
+   980  03AA  00B7               	movwf	??_RMS_Scheduler+1
+   981  03AB  0837               	movf	??_RMS_Scheduler+1,w
+   982  03AC  3E02               	addlw	2
+   983  03AD  0084               	movwf	4
+   984  03AE  1383               	bcf	3,7	;select IRP bank0
+   985  03AF  0800               	movf	0,w
+   986  03B0  00B8               	movwf	??_RMS_Scheduler+2
+   987  03B1  3005               	movlw	5
+   988  03B2  00B9               	movwf	??_RMS_Scheduler+3
+   989  03B3  0839               	movf	??_RMS_Scheduler+3,w
+   990  03B4  00A0               	movwf	___bmul@multiplicand
+   991  03B5  0843               	movf	RMS_Scheduler@i,w
+   992  03B6  120A  118A  24D8  120A  118A  	fcall	___bmul
+   993  03BB  3E02               	addlw	2
+   994  03BC  3E3E               	addlw	(low (RMS_Scheduler@excute_state| 0))& (0+255)
+   995  03BD  0084               	movwf	4
+   996  03BE  1283               	bcf	3,5	;RP0=0, select bank0
+   997  03BF  1303               	bcf	3,6	;RP1=0, select bank0
+   998  03C0  0838               	movf	??_RMS_Scheduler+2,w
+   999  03C1  1383               	bcf	3,7	;select IRP bank0
+  1000  03C2  0080               	movwf	0
+  1001  03C3  3005               	movlw	5
+  1002  03C4  00B6               	movwf	??_RMS_Scheduler
+  1003  03C5  0836               	movf	??_RMS_Scheduler,w
+  1004  03C6  00A0               	movwf	___bmul@multiplicand
+  1005  03C7  0834               	movf	RMS_Scheduler@ps,w
+  1006  03C8  3E0F               	addlw	15
+  1007  03C9  0084               	movwf	4
+  1008  03CA  0800               	movf	0,w
+  1009  03CB  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1010  03D0  1283               	bcf	3,5	;RP0=0, select bank0
+  1011  03D1  1303               	bcf	3,6	;RP1=0, select bank0
+  1012  03D2  0734               	addwf	RMS_Scheduler@ps,w
+  1013  03D3  00B7               	movwf	??_RMS_Scheduler+1
+  1014  03D4  0837               	movf	??_RMS_Scheduler+1,w
+  1015  03D5  3E03               	addlw	3
+  1016  03D6  0084               	movwf	4
+  1017  03D7  1383               	bcf	3,7	;select IRP bank0
+  1018  03D8  0800               	movf	0,w
+  1019  03D9  00B8               	movwf	??_RMS_Scheduler+2
+  1020  03DA  3005               	movlw	5
+  1021  03DB  00B9               	movwf	??_RMS_Scheduler+3
+  1022  03DC  0839               	movf	??_RMS_Scheduler+3,w
+  1023  03DD  00A0               	movwf	___bmul@multiplicand
+  1024  03DE  0843               	movf	RMS_Scheduler@i,w
+  1025  03DF  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1026  03E4  3E03               	addlw	3
+  1027  03E5  3E3E               	addlw	(low (RMS_Scheduler@excute_state| 0))& (0+255)
+  1028  03E6  0084               	movwf	4
+  1029  03E7  1283               	bcf	3,5	;RP0=0, select bank0
+  1030  03E8  1303               	bcf	3,6	;RP1=0, select bank0
+  1031  03E9  0838               	movf	??_RMS_Scheduler+2,w
+  1032  03EA  1383               	bcf	3,7	;select IRP bank0
+  1033  03EB  0080               	movwf	0
+  1034  03EC  3005               	movlw	5
+  1035  03ED  00B6               	movwf	??_RMS_Scheduler
+  1036  03EE  0836               	movf	??_RMS_Scheduler,w
+  1037  03EF  00A0               	movwf	___bmul@multiplicand
+  1038  03F0  0834               	movf	RMS_Scheduler@ps,w
+  1039  03F1  3E0F               	addlw	15
+  1040  03F2  0084               	movwf	4
+  1041  03F3  0800               	movf	0,w
+  1042  03F4  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1043  03F9  1283               	bcf	3,5	;RP0=0, select bank0
+  1044  03FA  1303               	bcf	3,6	;RP1=0, select bank0
+  1045  03FB  0734               	addwf	RMS_Scheduler@ps,w
+  1046  03FC  00B7               	movwf	??_RMS_Scheduler+1
+  1047  03FD  0837               	movf	??_RMS_Scheduler+1,w
+  1048  03FE  3E04               	addlw	4
+  1049  03FF  0084               	movwf	4
+  1050  0400  1383               	bcf	3,7	;select IRP bank0
+  1051  0401  0800               	movf	0,w
+  1052  0402  00B8               	movwf	??_RMS_Scheduler+2
+  1053  0403  3005               	movlw	5
+  1054  0404  00B9               	movwf	??_RMS_Scheduler+3
+  1055  0405  0839               	movf	??_RMS_Scheduler+3,w
+  1056  0406  00A0               	movwf	___bmul@multiplicand
+  1057  0407  0843               	movf	RMS_Scheduler@i,w
+  1058  0408  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1059  040D  3E04               	addlw	4
+  1060  040E  3E3E               	addlw	(low (RMS_Scheduler@excute_state| 0))& (0+255)
+  1061  040F  0084               	movwf	4
+  1062  0410  1283               	bcf	3,5	;RP0=0, select bank0
+  1063  0411  1303               	bcf	3,6	;RP1=0, select bank0
+  1064  0412  0838               	movf	??_RMS_Scheduler+2,w
+  1065  0413  1383               	bcf	3,7	;select IRP bank0
+  1066  0414  0080               	movwf	0
+  1067  0415  0834               	movf	RMS_Scheduler@ps,w
+  1068  0416  3E0F               	addlw	15
+  1069  0417  0084               	movwf	4
+  1070  0418  30FF               	movlw	255
+  1071  0419  0780               	addwf	0,f
+  1072  041A  0F84               	incfsz	4,f
+  1073  041B  0800               	movf	0,w
+  1074  041C  1803               	skipnc
+  1075  041D  0A00               	incf	0,w
+  1076  041E  00FF               	movwf	127
+  1077  041F  30FF               	movlw	255
+  1078  0420  077F               	addwf	127,w
+  1079  0421  0080               	movwf	0
+  1080  0422  0384               	decf	4,f
+  1081                           
+  1082                           ;rms.c: 147: if(excute_state[0].flage == 1){
+  1083  0423  0342               	decf	RMS_Scheduler@excute_state+4,w
+  1084  0424  1D03               	btfss	3,2
+  1085  0425  2B48               	goto	l990
+  1086                           
+  1087                           ;rms.c: 148: excute_state[0].pFun();
+  1088  0426  0841               	movf	low ((RMS_Scheduler@excute_state| 0+3)),w
+  1089  0427  120A  118A  2029  120A  118A  	fcall	fptable
+  1090                           
+  1091                           ;rms.c: 149: }
+  1092                           ;rms.c: 150: }
+  1093  042C  2B48               	goto	l990
+  1094  042D                     __end_of_RMS_Scheduler:	
+  1095                           ;rms.c: 152: return 1 ;
+  1096                           ;	Return value of _RMS_Scheduler is never used
+  1097                           
+  1098                           
+  1099                           	psect	text3
+  1100  04FC                     __ptext3:	
+  1101 ;; *************** function _timer1_init *****************
+  1102 ;; Defined at:
+  1103 ;;		line 85 in file "rms.c"
+  1104 ;; Parameters:    Size  Location     Type
+  1105 ;;		None
+  1106 ;; Auto vars:     Size  Location     Type
+  1107 ;;		None
+  1108 ;; Return value:  Size  Location     Type
+  1109 ;;                  1    wreg      void 
+  1110 ;; Registers used:
+  1111 ;;		wreg
+  1112 ;; Tracked objects:
+  1113 ;;		On entry : 0/0
+  1114 ;;		On exit  : 0/0
+  1115 ;;		Unchanged: 0/0
+  1116 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1117 ;;      Params:         0       0       0       0       0
+  1118 ;;      Locals:         0       0       0       0       0
+  1119 ;;      Temps:          0       0       0       0       0
+  1120 ;;      Totals:         0       0       0       0       0
+  1121 ;;Total ram usage:        0 bytes
+  1122 ;; Hardware stack levels used:    1
+  1123 ;; Hardware stack levels required when called:    2
+  1124 ;; This function calls:
+  1125 ;;		Nothing
+  1126 ;; This function is called by:
+  1127 ;;		_RMS_Scheduler
+  1128 ;; This function uses a non-reentrant model
+  1129 ;;
+  1130                           
+  1131                           
+  1132                           ;psect for function _timer1_init
+  1133  04FC                     _timer1_init:	
+  1134                           
+  1135                           ;rms.c: 86: TMR1L=224;
+  1136                           
+  1137                           ;incstack = 0
+  1138                           ; Regs used in _timer1_init: [wreg]
+  1139  04FC  30E0               	movlw	224
+  1140  04FD  1283               	bcf	3,5	;RP0=0, select bank0
+  1141  04FE  1303               	bcf	3,6	;RP1=0, select bank0
+  1142  04FF  008E               	movwf	14	;volatile
+  1143                           
+  1144                           ;rms.c: 87: TMR1H=177;
+  1145  0500  30B1               	movlw	177
+  1146  0501  008F               	movwf	15	;volatile
+  1147                           
+  1148                           ;rms.c: 88: INTCONbits.GIE=1;
+  1149  0502  178B               	bsf	11,7	;volatile
+  1150                           
+  1151                           ;rms.c: 89: INTCONbits.PEIE=1;
+  1152  0503  170B               	bsf	11,6	;volatile
+  1153                           
+  1154                           ;rms.c: 90: PIE1bits.TMR1IE=1;
+  1155  0504  1683               	bsf	3,5	;RP0=1, select bank1
+  1156  0505  1303               	bcf	3,6	;RP1=0, select bank1
+  1157  0506  140C               	bsf	12,0	;volatile
+  1158                           
+  1159                           ;rms.c: 91: T1CONbits.TMR1ON=1;
+  1160  0507  1283               	bcf	3,5	;RP0=0, select bank0
+  1161  0508  1303               	bcf	3,6	;RP1=0, select bank0
+  1162  0509  1410               	bsf	16,0	;volatile
+  1163                           
+  1164                           ;rms.c: 92: PIR1bits.TMR1IF=0;
+  1165  050A  100C               	bcf	12,0	;volatile
+  1166                           
+  1167                           ;rms.c: 93: (GIE = 1);
+  1168  050B  178B               	bsf	11,7	;volatile
+  1169  050C  0008               	return
+  1170  050D                     __end_of_timer1_init:	
+  1171                           
+  1172                           	psect	text4
+  1173  0566                     __ptext4:	
+  1174 ;; *************** function _process2 *****************
+  1175 ;; Defined at:
+  1176 ;;		line 33 in file "main.c"
+  1177 ;; Parameters:    Size  Location     Type
+  1178 ;;		None
+  1179 ;; Auto vars:     Size  Location     Type
+  1180 ;;		None
+  1181 ;; Return value:  Size  Location     Type
+  1182 ;;                  1    wreg      void 
+  1183 ;; Registers used:
+  1184 ;;		None
+  1185 ;; Tracked objects:
+  1186 ;;		On entry : 0/0
+  1187 ;;		On exit  : 0/0
+  1188 ;;		Unchanged: 0/0
+  1189 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1190 ;;      Params:         0       0       0       0       0
+  1191 ;;      Locals:         0       0       0       0       0
+  1192 ;;      Temps:          0       0       0       0       0
+  1193 ;;      Totals:         0       0       0       0       0
+  1194 ;;Total ram usage:        0 bytes
+  1195 ;; Hardware stack levels used:    1
+  1196 ;; Hardware stack levels required when called:    2
+  1197 ;; This function calls:
+  1198 ;;		Nothing
+  1199 ;; This function is called by:
+  1200 ;;		_RMS_Scheduler
+  1201 ;;		_ISR
+  1202 ;; This function uses a non-reentrant model
+  1203 ;;
+  1204                           
+  1205                           
+  1206                           ;psect for function _process2
+  1207  0566                     _process2:	
+  1208                           
+  1209                           ;main.c: 37: _delay((unsigned long)((00)*(4000000UL/4000.0)));
+  1210                           ;main.c: 38: PORTBbits.RB0=0;
+  1211                           
+  1212                           ;incstack = 0
+  1213                           ; Regs used in _process2: []
+  1214  0566  1283               	bcf	3,5	;RP0=0, select bank0
+  1215  0567  1303               	bcf	3,6	;RP1=0, select bank0
+  1216  0568  1006               	bcf	6,0	;volatile
+  1217                           
+  1218                           ;main.c: 39: PORTBbits.RB1=1;
+  1219  0569  1486               	bsf	6,1	;volatile
+  1220                           
+  1221                           ;main.c: 40: PORTBbits.RB2=0;
+  1222  056A  1106               	bcf	6,2	;volatile
+  1223  056B  0008               	return
+  1224  056C                     __end_of_process2:	
+  1225                           
+  1226                           	psect	text5
+  1227  050D                     __ptext5:	
+  1228 ;; *************** function _process1 *****************
+  1229 ;; Defined at:
+  1230 ;;		line 23 in file "main.c"
+  1231 ;; Parameters:    Size  Location     Type
+  1232 ;;		None
+  1233 ;; Auto vars:     Size  Location     Type
+  1234 ;;		None
+  1235 ;; Return value:  Size  Location     Type
+  1236 ;;                  1    wreg      void 
+  1237 ;; Registers used:
+  1238 ;;		wreg
+  1239 ;; Tracked objects:
+  1240 ;;		On entry : 0/0
+  1241 ;;		On exit  : 0/0
+  1242 ;;		Unchanged: 0/0
+  1243 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1244 ;;      Params:         0       0       0       0       0
+  1245 ;;      Locals:         0       0       0       0       0
+  1246 ;;      Temps:          0       2       0       0       0
+  1247 ;;      Totals:         0       2       0       0       0
+  1248 ;;Total ram usage:        2 bytes
+  1249 ;; Hardware stack levels used:    1
+  1250 ;; Hardware stack levels required when called:    2
+  1251 ;; This function calls:
+  1252 ;;		Nothing
+  1253 ;; This function is called by:
+  1254 ;;		_RMS_Scheduler
+  1255 ;;		_ISR
+  1256 ;; This function uses a non-reentrant model
+  1257 ;;
+  1258                           
+  1259                           
+  1260                           ;psect for function _process1
+  1261  050D                     _process1:	
+  1262                           
+  1263                           ;main.c: 27: _delay((unsigned long)((4)*(4000000UL/4000.0)));
+  1264                           
+  1265                           ;incstack = 0
+  1266                           ; Regs used in _process1: [wreg]
+  1267  050D  3006               	movlw	6
+  1268  050E  1283               	bcf	3,5	;RP0=0, select bank0
+  1269  050F  1303               	bcf	3,6	;RP1=0, select bank0
+  1270  0510  00A1               	movwf	??_process1+1
+  1271  0511  302F               	movlw	47
+  1272  0512  00A0               	movwf	??_process1
+  1273  0513                     u387:	
+  1274  0513  0BA0               	decfsz	??_process1,f
+  1275  0514  2D13               	goto	u387
+  1276  0515  0BA1               	decfsz	??_process1+1,f
+  1277  0516  2D13               	goto	u387
+  1278  0517  2D18               	nop2
+  1279                           
+  1280                           ;main.c: 28: PORTBbits.RB0=1;
+  1281  0518  1283               	bcf	3,5	;RP0=0, select bank0
+  1282  0519  1303               	bcf	3,6	;RP1=0, select bank0
+  1283  051A  1406               	bsf	6,0	;volatile
+  1284                           
+  1285                           ;main.c: 29: PORTBbits.RB1=0;
+  1286  051B  1086               	bcf	6,1	;volatile
+  1287                           
+  1288                           ;main.c: 30: PORTBbits.RB2=0;
+  1289  051C  1106               	bcf	6,2	;volatile
+  1290  051D  0008               	return
+  1291  051E                     __end_of_process1:	
+  1292                           
+  1293                           	psect	text6
+  1294  051E                     __ptext6:	
+  1295 ;; *************** function _process3 *****************
+  1296 ;; Defined at:
+  1297 ;;		line 43 in file "main.c"
+  1298 ;; Parameters:    Size  Location     Type
+  1299 ;;		None
+  1300 ;; Auto vars:     Size  Location     Type
+  1301 ;;		None
+  1302 ;; Return value:  Size  Location     Type
+  1303 ;;                  1    wreg      void 
+  1304 ;; Registers used:
+  1305 ;;		wreg
+  1306 ;; Tracked objects:
+  1307 ;;		On entry : 0/0
+  1308 ;;		On exit  : 0/0
+  1309 ;;		Unchanged: 0/0
+  1310 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1311 ;;      Params:         0       0       0       0       0
+  1312 ;;      Locals:         0       0       0       0       0
+  1313 ;;      Temps:          0       2       0       0       0
+  1314 ;;      Totals:         0       2       0       0       0
+  1315 ;;Total ram usage:        2 bytes
+  1316 ;; Hardware stack levels used:    1
+  1317 ;; Hardware stack levels required when called:    2
+  1318 ;; This function calls:
+  1319 ;;		Nothing
+  1320 ;; This function is called by:
+  1321 ;;		_RMS_Scheduler
+  1322 ;;		_ISR
+  1323 ;; This function uses a non-reentrant model
+  1324 ;;
+  1325                           
+  1326                           
+  1327                           ;psect for function _process3
+  1328  051E                     _process3:	
+  1329                           
+  1330                           ;main.c: 47: _delay((unsigned long)((40)*(4000000UL/4000.0)));
+  1331                           
+  1332                           ;incstack = 0
+  1333                           ; Regs used in _process3: [wreg]
+  1334  051E  3034               	movlw	52
+  1335  051F  1283               	bcf	3,5	;RP0=0, select bank0
+  1336  0520  1303               	bcf	3,6	;RP1=0, select bank0
+  1337  0521  00A1               	movwf	??_process3+1
+  1338  0522  30F1               	movlw	241
+  1339  0523  00A0               	movwf	??_process3
+  1340  0524                     u397:	
+  1341  0524  0BA0               	decfsz	??_process3,f
+  1342  0525  2D24               	goto	u397
+  1343  0526  0BA1               	decfsz	??_process3+1,f
+  1344  0527  2D24               	goto	u397
+  1345                           
+  1346                           ;main.c: 48: PORTBbits.RB0=0;
+  1347  0528  1283               	bcf	3,5	;RP0=0, select bank0
+  1348  0529  1303               	bcf	3,6	;RP1=0, select bank0
+  1349  052A  1006               	bcf	6,0	;volatile
+  1350                           
+  1351                           ;main.c: 49: PORTBbits.RB1=0;
+  1352  052B  1086               	bcf	6,1	;volatile
+  1353                           
+  1354                           ;main.c: 50: PORTBbits.RB2=1;
+  1355  052C  1506               	bsf	6,2	;volatile
+  1356  052D  0008               	return
+  1357  052E                     __end_of_process3:	
+  1358                           
+  1359                           	psect	text7
+  1360  0047                     __ptext7:	
+  1361 ;; *************** function _LCM *****************
+  1362 ;; Defined at:
+  1363 ;;		line 97 in file "rms.c"
+  1364 ;; Parameters:    Size  Location     Type
+  1365 ;;  p               1    wreg     PTR struct process
+  1366 ;;		 -> main@p(15), 
+  1367 ;;  num_process     1    4[BANK0 ] unsigned char 
+  1368 ;; Auto vars:     Size  Location     Type
+  1369 ;;  p               1   19[BANK0 ] PTR struct process
+  1370 ;;		 -> main@p(15), 
+  1371 ;;  temp            5   13[BANK0 ] struct process
+  1372 ;;  i               1   18[BANK0 ] unsigned char 
+  1373 ;;  index           1   12[BANK0 ] unsigned char 
+  1374 ;;  j               1   11[BANK0 ] unsigned char 
+  1375 ;;  max_per         1   10[BANK0 ] PTR struct process
+  1376 ;;		 -> main@p(15), 
+  1377 ;; Return value:  Size  Location     Type
+  1378 ;;                  1    wreg      unsigned char 
+  1379 ;; Registers used:
+  1380 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1381 ;; Tracked objects:
+  1382 ;;		On entry : 0/0
+  1383 ;;		On exit  : 0/0
+  1384 ;;		Unchanged: 0/0
+  1385 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1386 ;;      Params:         0       1       0       0       0
+  1387 ;;      Locals:         0      10       0       0       0
+  1388 ;;      Temps:          0       5       0       0       0
+  1389 ;;      Totals:         0      16       0       0       0
+  1390 ;;Total ram usage:       16 bytes
+  1391 ;; Hardware stack levels used:    1
+  1392 ;; Hardware stack levels required when called:    3
+  1393 ;; This function calls:
+  1394 ;;		___bmul
+  1395 ;; This function is called by:
+  1396 ;;		_RMS_Scheduler
+  1397 ;; This function uses a non-reentrant model
+  1398 ;;
+  1399                           
+  1400                           
+  1401                           ;psect for function _LCM
+  1402  0047                     _LCM:	
+  1403                           
+  1404                           ;incstack = 0
+  1405                           ; Regs used in _LCM: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1406                           ;LCM@p stored from wreg
+  1407  0047  1283               	bcf	3,5	;RP0=0, select bank0
+  1408  0048  1303               	bcf	3,6	;RP1=0, select bank0
+  1409  0049  00B3               	movwf	LCM@p
+  1410                           
+  1411                           ;rms.c: 98: PROCESS *max_per=p , temp;
+  1412  004A  0833               	movf	LCM@p,w
+  1413  004B  00A5               	movwf	??_LCM
+  1414  004C  0825               	movf	??_LCM,w
+  1415  004D  00AA               	movwf	LCM@max_per
+  1416                           
+  1417                           ;rms.c: 99: unsigned char i ,j, index=0;
+  1418  004E  01AC               	clrf	LCM@index
+  1419                           
+  1420                           ;rms.c: 100: for(i=0 ; i<num_process ; i++){
+  1421  004F  01B2               	clrf	LCM@i
+  1422  0050                     l854:	
+  1423  0050  0824               	movf	LCM@num_process,w
+  1424  0051  0232               	subwf	LCM@i,w
+  1425  0052  1803               	btfsc	3,0
+  1426  0053  0008               	return
+  1427                           
+  1428                           ;rms.c: 101: max_per = (p+i);
+  1429  0054  3005               	movlw	5
+  1430  0055  00A5               	movwf	??_LCM
+  1431  0056  0825               	movf	??_LCM,w
+  1432  0057  00A0               	movwf	___bmul@multiplicand
+  1433  0058  0832               	movf	LCM@i,w
+  1434  0059  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1435  005E  1283               	bcf	3,5	;RP0=0, select bank0
+  1436  005F  1303               	bcf	3,6	;RP1=0, select bank0
+  1437  0060  0733               	addwf	LCM@p,w
+  1438  0061  00A6               	movwf	??_LCM+1
+  1439  0062  0826               	movf	??_LCM+1,w
+  1440  0063  00AA               	movwf	LCM@max_per
+  1441                           
+  1442                           ;rms.c: 102: for(j=i ; j<num_process ; j++){
+  1443  0064  0832               	movf	LCM@i,w
+  1444  0065  00A5               	movwf	??_LCM
+  1445  0066  0825               	movf	??_LCM,w
+  1446  0067  00AB               	movwf	LCM@j
+  1447  0068                     l850:	
+  1448  0068  0824               	movf	LCM@num_process,w
+  1449  0069  022B               	subwf	LCM@j,w
+  1450  006A  1803               	btfsc	3,0
+  1451  006B  2A3F               	goto	l852
+  1452                           
+  1453                           ;rms.c: 103: if((p[j].deadline) < (max_per->deadline) ){
+  1454  006C  082A               	movf	LCM@max_per,w
+  1455  006D  3E02               	addlw	2
+  1456  006E  0084               	movwf	4
+  1457  006F  1383               	bcf	3,7	;select IRP bank0
+  1458  0070  0800               	movf	0,w
+  1459  0071  00A5               	movwf	??_LCM
+  1460  0072  3005               	movlw	5
+  1461  0073  00A6               	movwf	??_LCM+1
+  1462  0074  0826               	movf	??_LCM+1,w
+  1463  0075  00A0               	movwf	___bmul@multiplicand
+  1464  0076  082B               	movf	LCM@j,w
+  1465  0077  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1466  007C  1283               	bcf	3,5	;RP0=0, select bank0
+  1467  007D  1303               	bcf	3,6	;RP1=0, select bank0
+  1468  007E  0733               	addwf	LCM@p,w
+  1469  007F  00A7               	movwf	??_LCM+2
+  1470  0080  0827               	movf	??_LCM+2,w
+  1471  0081  3E02               	addlw	2
+  1472  0082  0084               	movwf	4
+  1473  0083  1383               	bcf	3,7	;select IRP bank0
+  1474  0084  0800               	movf	0,w
+  1475  0085  00A8               	movwf	??_LCM+3
+  1476  0086  0825               	movf	??_LCM,w
+  1477  0087  0228               	subwf	??_LCM+3,w
+  1478  0088  1803               	skipnc
+  1479  0089  2A3A               	goto	l848
+  1480                           
+  1481                           ;rms.c: 104: max_per =(p+j);
+  1482  008A  3005               	movlw	5
+  1483  008B  00A5               	movwf	??_LCM
+  1484  008C  0825               	movf	??_LCM,w
+  1485  008D  00A0               	movwf	___bmul@multiplicand
+  1486  008E  082B               	movf	LCM@j,w
+  1487  008F  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1488  0094  1283               	bcf	3,5	;RP0=0, select bank0
+  1489  0095  1303               	bcf	3,6	;RP1=0, select bank0
+  1490  0096  0733               	addwf	LCM@p,w
+  1491  0097  00A6               	movwf	??_LCM+1
+  1492  0098  0826               	movf	??_LCM+1,w
+  1493  0099  00AA               	movwf	LCM@max_per
+  1494                           
+  1495                           ;rms.c: 105: index=j;
+  1496  009A  082B               	movf	LCM@j,w
+  1497  009B  00A5               	movwf	??_LCM
+  1498  009C  0825               	movf	??_LCM,w
+  1499  009D  00AC               	movwf	LCM@index
+  1500                           
+  1501                           ;rms.c: 106: temp.cap=p[index].cap;
+  1502  009E  3005               	movlw	5
+  1503  009F  00A5               	movwf	??_LCM
+  1504  00A0  0825               	movf	??_LCM,w
+  1505  00A1  00A0               	movwf	___bmul@multiplicand
+  1506  00A2  082C               	movf	LCM@index,w
+  1507  00A3  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1508  00A8  1283               	bcf	3,5	;RP0=0, select bank0
+  1509  00A9  1303               	bcf	3,6	;RP1=0, select bank0
+  1510  00AA  0733               	addwf	LCM@p,w
+  1511  00AB  00A6               	movwf	??_LCM+1
+  1512  00AC  0A26               	incf	??_LCM+1,w
+  1513  00AD  0084               	movwf	4
+  1514  00AE  1383               	bcf	3,7	;select IRP bank0
+  1515  00AF  0800               	movf	0,w
+  1516  00B0  00A7               	movwf	??_LCM+2
+  1517  00B1  0827               	movf	??_LCM+2,w
+  1518  00B2  00AE               	movwf	LCM@temp+1
+  1519                           
+  1520                           ;rms.c: 107: temp.deadline=p[index].deadline;
+  1521  00B3  3005               	movlw	5
+  1522  00B4  00A5               	movwf	??_LCM
+  1523  00B5  0825               	movf	??_LCM,w
+  1524  00B6  00A0               	movwf	___bmul@multiplicand
+  1525  00B7  082C               	movf	LCM@index,w
+  1526  00B8  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1527  00BD  1283               	bcf	3,5	;RP0=0, select bank0
+  1528  00BE  1303               	bcf	3,6	;RP1=0, select bank0
+  1529  00BF  0733               	addwf	LCM@p,w
+  1530  00C0  00A6               	movwf	??_LCM+1
+  1531  00C1  0826               	movf	??_LCM+1,w
+  1532  00C2  3E02               	addlw	2
+  1533  00C3  0084               	movwf	4
+  1534  00C4  1383               	bcf	3,7	;select IRP bank0
+  1535  00C5  0800               	movf	0,w
+  1536  00C6  00A7               	movwf	??_LCM+2
+  1537  00C7  0827               	movf	??_LCM+2,w
+  1538  00C8  00AF               	movwf	LCM@temp+2
+  1539                           
+  1540                           ;rms.c: 108: temp.flage=p[index].flage;
+  1541  00C9  3005               	movlw	5
+  1542  00CA  00A5               	movwf	??_LCM
+  1543  00CB  0825               	movf	??_LCM,w
+  1544  00CC  00A0               	movwf	___bmul@multiplicand
+  1545  00CD  082C               	movf	LCM@index,w
+  1546  00CE  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1547  00D3  1283               	bcf	3,5	;RP0=0, select bank0
+  1548  00D4  1303               	bcf	3,6	;RP1=0, select bank0
+  1549  00D5  0733               	addwf	LCM@p,w
+  1550  00D6  00A6               	movwf	??_LCM+1
+  1551  00D7  0826               	movf	??_LCM+1,w
+  1552  00D8  3E04               	addlw	4
+  1553  00D9  0084               	movwf	4
+  1554  00DA  1383               	bcf	3,7	;select IRP bank0
+  1555  00DB  0800               	movf	0,w
+  1556  00DC  00A7               	movwf	??_LCM+2
+  1557  00DD  0827               	movf	??_LCM+2,w
+  1558  00DE  00B1               	movwf	LCM@temp+4
+  1559                           
+  1560                           ;rms.c: 109: temp.id=p[index].id;
+  1561  00DF  3005               	movlw	5
+  1562  00E0  00A5               	movwf	??_LCM
+  1563  00E1  0825               	movf	??_LCM,w
+  1564  00E2  00A0               	movwf	___bmul@multiplicand
+  1565  00E3  082C               	movf	LCM@index,w
+  1566  00E4  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1567  00E9  1283               	bcf	3,5	;RP0=0, select bank0
+  1568  00EA  1303               	bcf	3,6	;RP1=0, select bank0
+  1569  00EB  0733               	addwf	LCM@p,w
+  1570  00EC  00A6               	movwf	??_LCM+1
+  1571  00ED  0826               	movf	??_LCM+1,w
+  1572  00EE  0084               	movwf	4
+  1573  00EF  1383               	bcf	3,7	;select IRP bank0
+  1574  00F0  0800               	movf	0,w
+  1575  00F1  00A7               	movwf	??_LCM+2
+  1576  00F2  0827               	movf	??_LCM+2,w
+  1577  00F3  00AD               	movwf	LCM@temp
+  1578                           
+  1579                           ;rms.c: 110: temp.pFun=p[index].pFun;
+  1580  00F4  3005               	movlw	5
+  1581  00F5  00A5               	movwf	??_LCM
+  1582  00F6  0825               	movf	??_LCM,w
+  1583  00F7  00A0               	movwf	___bmul@multiplicand
+  1584  00F8  082C               	movf	LCM@index,w
+  1585  00F9  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1586  00FE  1283               	bcf	3,5	;RP0=0, select bank0
+  1587  00FF  1303               	bcf	3,6	;RP1=0, select bank0
+  1588  0100  0733               	addwf	LCM@p,w
+  1589  0101  00A6               	movwf	??_LCM+1
+  1590  0102  0826               	movf	??_LCM+1,w
+  1591  0103  3E03               	addlw	3
+  1592  0104  0084               	movwf	4
+  1593  0105  1383               	bcf	3,7	;select IRP bank0
+  1594  0106  0800               	movf	0,w
+  1595  0107  00A7               	movwf	??_LCM+2
+  1596  0108  0827               	movf	??_LCM+2,w
+  1597  0109  00B0               	movwf	low ((LCM@temp| 0+3))
+  1598                           
+  1599                           ;rms.c: 112: p[index].cap=p[i].cap;
+  1600  010A  3005               	movlw	5
+  1601  010B  00A5               	movwf	??_LCM
+  1602  010C  0825               	movf	??_LCM,w
+  1603  010D  00A0               	movwf	___bmul@multiplicand
+  1604  010E  0832               	movf	LCM@i,w
+  1605  010F  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1606  0114  1283               	bcf	3,5	;RP0=0, select bank0
+  1607  0115  1303               	bcf	3,6	;RP1=0, select bank0
+  1608  0116  0733               	addwf	LCM@p,w
+  1609  0117  00A6               	movwf	??_LCM+1
+  1610  0118  0A26               	incf	??_LCM+1,w
+  1611  0119  0084               	movwf	4
+  1612  011A  1383               	bcf	3,7	;select IRP bank0
+  1613  011B  0800               	movf	0,w
+  1614  011C  00A7               	movwf	??_LCM+2
+  1615  011D  3005               	movlw	5
+  1616  011E  00A8               	movwf	??_LCM+3
+  1617  011F  0828               	movf	??_LCM+3,w
+  1618  0120  00A0               	movwf	___bmul@multiplicand
+  1619  0121  082C               	movf	LCM@index,w
+  1620  0122  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1621  0127  1283               	bcf	3,5	;RP0=0, select bank0
+  1622  0128  1303               	bcf	3,6	;RP1=0, select bank0
+  1623  0129  0733               	addwf	LCM@p,w
+  1624  012A  00A9               	movwf	??_LCM+4
+  1625  012B  0A29               	incf	??_LCM+4,w
+  1626  012C  0084               	movwf	4
+  1627  012D  0827               	movf	??_LCM+2,w
+  1628  012E  1383               	bcf	3,7	;select IRP bank0
+  1629  012F  0080               	movwf	0
+  1630                           
+  1631                           ;rms.c: 113: p[index].deadline=p[i].deadline;
+  1632  0130  3005               	movlw	5
+  1633  0131  00A5               	movwf	??_LCM
+  1634  0132  0825               	movf	??_LCM,w
+  1635  0133  00A0               	movwf	___bmul@multiplicand
+  1636  0134  0832               	movf	LCM@i,w
+  1637  0135  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1638  013A  1283               	bcf	3,5	;RP0=0, select bank0
+  1639  013B  1303               	bcf	3,6	;RP1=0, select bank0
+  1640  013C  0733               	addwf	LCM@p,w
+  1641  013D  00A6               	movwf	??_LCM+1
+  1642  013E  0826               	movf	??_LCM+1,w
+  1643  013F  3E02               	addlw	2
+  1644  0140  0084               	movwf	4
+  1645  0141  1383               	bcf	3,7	;select IRP bank0
+  1646  0142  0800               	movf	0,w
+  1647  0143  00A7               	movwf	??_LCM+2
+  1648  0144  3005               	movlw	5
+  1649  0145  00A8               	movwf	??_LCM+3
+  1650  0146  0828               	movf	??_LCM+3,w
+  1651  0147  00A0               	movwf	___bmul@multiplicand
+  1652  0148  082C               	movf	LCM@index,w
+  1653  0149  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1654  014E  1283               	bcf	3,5	;RP0=0, select bank0
+  1655  014F  1303               	bcf	3,6	;RP1=0, select bank0
+  1656  0150  0733               	addwf	LCM@p,w
+  1657  0151  00A9               	movwf	??_LCM+4
+  1658  0152  0829               	movf	??_LCM+4,w
+  1659  0153  3E02               	addlw	2
+  1660  0154  0084               	movwf	4
+  1661  0155  0827               	movf	??_LCM+2,w
+  1662  0156  1383               	bcf	3,7	;select IRP bank0
+  1663  0157  0080               	movwf	0
+  1664                           
+  1665                           ;rms.c: 114: p[index].flage=p[i].flage;
+  1666  0158  3005               	movlw	5
+  1667  0159  00A5               	movwf	??_LCM
+  1668  015A  0825               	movf	??_LCM,w
+  1669  015B  00A0               	movwf	___bmul@multiplicand
+  1670  015C  0832               	movf	LCM@i,w
+  1671  015D  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1672  0162  1283               	bcf	3,5	;RP0=0, select bank0
+  1673  0163  1303               	bcf	3,6	;RP1=0, select bank0
+  1674  0164  0733               	addwf	LCM@p,w
+  1675  0165  00A6               	movwf	??_LCM+1
+  1676  0166  0826               	movf	??_LCM+1,w
+  1677  0167  3E04               	addlw	4
+  1678  0168  0084               	movwf	4
+  1679  0169  1383               	bcf	3,7	;select IRP bank0
+  1680  016A  0800               	movf	0,w
+  1681  016B  00A7               	movwf	??_LCM+2
+  1682  016C  3005               	movlw	5
+  1683  016D  00A8               	movwf	??_LCM+3
+  1684  016E  0828               	movf	??_LCM+3,w
+  1685  016F  00A0               	movwf	___bmul@multiplicand
+  1686  0170  082C               	movf	LCM@index,w
+  1687  0171  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1688  0176  1283               	bcf	3,5	;RP0=0, select bank0
+  1689  0177  1303               	bcf	3,6	;RP1=0, select bank0
+  1690  0178  0733               	addwf	LCM@p,w
+  1691  0179  00A9               	movwf	??_LCM+4
+  1692  017A  0829               	movf	??_LCM+4,w
+  1693  017B  3E04               	addlw	4
+  1694  017C  0084               	movwf	4
+  1695  017D  0827               	movf	??_LCM+2,w
+  1696  017E  1383               	bcf	3,7	;select IRP bank0
+  1697  017F  0080               	movwf	0
+  1698                           
+  1699                           ;rms.c: 115: p[index].id=p[i].id;
+  1700  0180  3005               	movlw	5
+  1701  0181  00A5               	movwf	??_LCM
+  1702  0182  0825               	movf	??_LCM,w
+  1703  0183  00A0               	movwf	___bmul@multiplicand
+  1704  0184  0832               	movf	LCM@i,w
+  1705  0185  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1706  018A  1283               	bcf	3,5	;RP0=0, select bank0
+  1707  018B  1303               	bcf	3,6	;RP1=0, select bank0
+  1708  018C  0733               	addwf	LCM@p,w
+  1709  018D  00A6               	movwf	??_LCM+1
+  1710  018E  0826               	movf	??_LCM+1,w
+  1711  018F  0084               	movwf	4
+  1712  0190  1383               	bcf	3,7	;select IRP bank0
+  1713  0191  0800               	movf	0,w
+  1714  0192  00A7               	movwf	??_LCM+2
+  1715  0193  3005               	movlw	5
+  1716  0194  00A8               	movwf	??_LCM+3
+  1717  0195  0828               	movf	??_LCM+3,w
+  1718  0196  00A0               	movwf	___bmul@multiplicand
+  1719  0197  082C               	movf	LCM@index,w
+  1720  0198  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1721  019D  1283               	bcf	3,5	;RP0=0, select bank0
+  1722  019E  1303               	bcf	3,6	;RP1=0, select bank0
+  1723  019F  0733               	addwf	LCM@p,w
+  1724  01A0  00A9               	movwf	??_LCM+4
+  1725  01A1  0829               	movf	??_LCM+4,w
+  1726  01A2  0084               	movwf	4
+  1727  01A3  0827               	movf	??_LCM+2,w
+  1728  01A4  1383               	bcf	3,7	;select IRP bank0
+  1729  01A5  0080               	movwf	0
+  1730                           
+  1731                           ;rms.c: 116: p[index].pFun=p[i].pFun;
+  1732  01A6  3005               	movlw	5
+  1733  01A7  00A5               	movwf	??_LCM
+  1734  01A8  0825               	movf	??_LCM,w
+  1735  01A9  00A0               	movwf	___bmul@multiplicand
+  1736  01AA  0832               	movf	LCM@i,w
+  1737  01AB  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1738  01B0  1283               	bcf	3,5	;RP0=0, select bank0
+  1739  01B1  1303               	bcf	3,6	;RP1=0, select bank0
+  1740  01B2  0733               	addwf	LCM@p,w
+  1741  01B3  00A6               	movwf	??_LCM+1
+  1742  01B4  0826               	movf	??_LCM+1,w
+  1743  01B5  3E03               	addlw	3
+  1744  01B6  0084               	movwf	4
+  1745  01B7  1383               	bcf	3,7	;select IRP bank0
+  1746  01B8  0800               	movf	0,w
+  1747  01B9  00A7               	movwf	??_LCM+2
+  1748  01BA  3005               	movlw	5
+  1749  01BB  00A8               	movwf	??_LCM+3
+  1750  01BC  0828               	movf	??_LCM+3,w
+  1751  01BD  00A0               	movwf	___bmul@multiplicand
+  1752  01BE  082C               	movf	LCM@index,w
+  1753  01BF  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1754  01C4  1283               	bcf	3,5	;RP0=0, select bank0
+  1755  01C5  1303               	bcf	3,6	;RP1=0, select bank0
+  1756  01C6  0733               	addwf	LCM@p,w
+  1757  01C7  00A9               	movwf	??_LCM+4
+  1758  01C8  0829               	movf	??_LCM+4,w
+  1759  01C9  3E03               	addlw	3
+  1760  01CA  0084               	movwf	4
+  1761  01CB  0827               	movf	??_LCM+2,w
+  1762  01CC  1383               	bcf	3,7	;select IRP bank0
+  1763  01CD  0080               	movwf	0
+  1764                           
+  1765                           ;rms.c: 118: p[i].cap=temp.cap;
+  1766  01CE  082E               	movf	LCM@temp+1,w
+  1767  01CF  00A5               	movwf	??_LCM
+  1768  01D0  3005               	movlw	5
+  1769  01D1  00A6               	movwf	??_LCM+1
+  1770  01D2  0826               	movf	??_LCM+1,w
+  1771  01D3  00A0               	movwf	___bmul@multiplicand
+  1772  01D4  0832               	movf	LCM@i,w
+  1773  01D5  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1774  01DA  1283               	bcf	3,5	;RP0=0, select bank0
+  1775  01DB  1303               	bcf	3,6	;RP1=0, select bank0
+  1776  01DC  0733               	addwf	LCM@p,w
+  1777  01DD  00A7               	movwf	??_LCM+2
+  1778  01DE  0A27               	incf	??_LCM+2,w
+  1779  01DF  0084               	movwf	4
+  1780  01E0  0825               	movf	??_LCM,w
+  1781  01E1  1383               	bcf	3,7	;select IRP bank0
+  1782  01E2  0080               	movwf	0
+  1783                           
+  1784                           ;rms.c: 119: p[i].deadline=temp.deadline;
+  1785  01E3  082F               	movf	LCM@temp+2,w
+  1786  01E4  00A5               	movwf	??_LCM
+  1787  01E5  3005               	movlw	5
+  1788  01E6  00A6               	movwf	??_LCM+1
+  1789  01E7  0826               	movf	??_LCM+1,w
+  1790  01E8  00A0               	movwf	___bmul@multiplicand
+  1791  01E9  0832               	movf	LCM@i,w
+  1792  01EA  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1793  01EF  1283               	bcf	3,5	;RP0=0, select bank0
+  1794  01F0  1303               	bcf	3,6	;RP1=0, select bank0
+  1795  01F1  0733               	addwf	LCM@p,w
+  1796  01F2  00A7               	movwf	??_LCM+2
+  1797  01F3  0827               	movf	??_LCM+2,w
+  1798  01F4  3E02               	addlw	2
+  1799  01F5  0084               	movwf	4
+  1800  01F6  0825               	movf	??_LCM,w
+  1801  01F7  1383               	bcf	3,7	;select IRP bank0
+  1802  01F8  0080               	movwf	0
+  1803                           
+  1804                           ;rms.c: 120: p[i].flage=temp.flage;
+  1805  01F9  0831               	movf	LCM@temp+4,w
+  1806  01FA  00A5               	movwf	??_LCM
+  1807  01FB  3005               	movlw	5
+  1808  01FC  00A6               	movwf	??_LCM+1
+  1809  01FD  0826               	movf	??_LCM+1,w
+  1810  01FE  00A0               	movwf	___bmul@multiplicand
+  1811  01FF  0832               	movf	LCM@i,w
+  1812  0200  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1813  0205  1283               	bcf	3,5	;RP0=0, select bank0
+  1814  0206  1303               	bcf	3,6	;RP1=0, select bank0
+  1815  0207  0733               	addwf	LCM@p,w
+  1816  0208  00A7               	movwf	??_LCM+2
+  1817  0209  0827               	movf	??_LCM+2,w
+  1818  020A  3E04               	addlw	4
+  1819  020B  0084               	movwf	4
+  1820  020C  0825               	movf	??_LCM,w
+  1821  020D  1383               	bcf	3,7	;select IRP bank0
+  1822  020E  0080               	movwf	0
+  1823                           
+  1824                           ;rms.c: 121: p[i].id=temp.id;
+  1825  020F  082D               	movf	LCM@temp,w
+  1826  0210  00A5               	movwf	??_LCM
+  1827  0211  3005               	movlw	5
+  1828  0212  00A6               	movwf	??_LCM+1
+  1829  0213  0826               	movf	??_LCM+1,w
+  1830  0214  00A0               	movwf	___bmul@multiplicand
+  1831  0215  0832               	movf	LCM@i,w
+  1832  0216  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1833  021B  1283               	bcf	3,5	;RP0=0, select bank0
+  1834  021C  1303               	bcf	3,6	;RP1=0, select bank0
+  1835  021D  0733               	addwf	LCM@p,w
+  1836  021E  00A7               	movwf	??_LCM+2
+  1837  021F  0827               	movf	??_LCM+2,w
+  1838  0220  0084               	movwf	4
+  1839  0221  0825               	movf	??_LCM,w
+  1840  0222  1383               	bcf	3,7	;select IRP bank0
+  1841  0223  0080               	movwf	0
+  1842                           
+  1843                           ;rms.c: 122: p[i].pFun=temp.pFun;
+  1844  0224  0830               	movf	low ((LCM@temp| 0+3)),w
+  1845  0225  00A5               	movwf	??_LCM
+  1846  0226  3005               	movlw	5
+  1847  0227  00A6               	movwf	??_LCM+1
+  1848  0228  0826               	movf	??_LCM+1,w
+  1849  0229  00A0               	movwf	___bmul@multiplicand
+  1850  022A  0832               	movf	LCM@i,w
+  1851  022B  120A  118A  24D8  120A  118A  	fcall	___bmul
+  1852  0230  1283               	bcf	3,5	;RP0=0, select bank0
+  1853  0231  1303               	bcf	3,6	;RP1=0, select bank0
+  1854  0232  0733               	addwf	LCM@p,w
+  1855  0233  00A7               	movwf	??_LCM+2
+  1856  0234  0827               	movf	??_LCM+2,w
+  1857  0235  3E03               	addlw	3
+  1858  0236  0084               	movwf	4
+  1859  0237  0825               	movf	??_LCM,w
+  1860  0238  1383               	bcf	3,7	;select IRP bank0
+  1861  0239  0080               	movwf	0
+  1862  023A                     l848:	
+  1863  023A  3001               	movlw	1
+  1864  023B  00A5               	movwf	??_LCM
+  1865  023C  0825               	movf	??_LCM,w
+  1866  023D  07AB               	addwf	LCM@j,f
+  1867  023E  2868               	goto	l850
+  1868  023F                     l852:	
+  1869  023F  3001               	movlw	1
+  1870  0240  00A5               	movwf	??_LCM
+  1871  0241  0825               	movf	??_LCM,w
+  1872  0242  07B2               	addwf	LCM@i,f
+  1873  0243  2850               	goto	l854
+  1874  0244                     __end_of_LCM:	
+  1875                           ;rms.c: 123: }
+  1876                           ;rms.c: 125: }
+  1877                           ;rms.c: 127: }
+  1878                           ;rms.c: 128: return 1;
+  1879                           ;	Return value of _LCM is never used
+  1880                           
+  1881                           
+  1882                           	psect	text8
+  1883  04D8                     __ptext8:	
+  1884 ;; *************** function ___bmul *****************
+  1885 ;; Defined at:
+  1886 ;;		line 4 in file "C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul8.c"
+  1887 ;; Parameters:    Size  Location     Type
+  1888 ;;  multiplier      1    wreg     unsigned char 
+  1889 ;;  multiplicand    1    0[BANK0 ] unsigned char 
+  1890 ;; Auto vars:     Size  Location     Type
+  1891 ;;  multiplier      1    3[BANK0 ] unsigned char 
+  1892 ;;  product         1    2[BANK0 ] unsigned char 
+  1893 ;; Return value:  Size  Location     Type
+  1894 ;;                  1    wreg      unsigned char 
+  1895 ;; Registers used:
+  1896 ;;		wreg, status,2, status,0
+  1897 ;; Tracked objects:
+  1898 ;;		On entry : 0/0
+  1899 ;;		On exit  : 0/0
+  1900 ;;		Unchanged: 0/0
+  1901 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1902 ;;      Params:         0       1       0       0       0
+  1903 ;;      Locals:         0       2       0       0       0
+  1904 ;;      Temps:          0       1       0       0       0
+  1905 ;;      Totals:         0       4       0       0       0
+  1906 ;;Total ram usage:        4 bytes
+  1907 ;; Hardware stack levels used:    1
+  1908 ;; Hardware stack levels required when called:    2
+  1909 ;; This function calls:
+  1910 ;;		Nothing
+  1911 ;; This function is called by:
+  1912 ;;		_LCM
+  1913 ;;		_RMS_Scheduler
+  1914 ;; This function uses a non-reentrant model
+  1915 ;;
+  1916                           
+  1917                           
+  1918                           ;psect for function ___bmul
+  1919  04D8                     ___bmul:	
+  1920                           
+  1921                           ;incstack = 0
+  1922                           ; Regs used in ___bmul: [wreg+status,2+status,0]
+  1923                           ;___bmul@multiplier stored from wreg
+  1924  04D8  1283               	bcf	3,5	;RP0=0, select bank0
+  1925  04D9  1303               	bcf	3,6	;RP1=0, select bank0
+  1926  04DA  00A3               	movwf	___bmul@multiplier
+  1927  04DB  01A2               	clrf	___bmul@product
+  1928  04DC                     l758:	
+  1929  04DC  1C23               	btfss	___bmul@multiplier,0
+  1930  04DD  2CE2               	goto	l762
+  1931  04DE  0820               	movf	___bmul@multiplicand,w
+  1932  04DF  00A1               	movwf	??___bmul
+  1933  04E0  0821               	movf	??___bmul,w
+  1934  04E1  07A2               	addwf	___bmul@product,f
+  1935  04E2                     l762:	
+  1936  04E2  1003               	clrc
+  1937  04E3  0DA0               	rlf	___bmul@multiplicand,f
+  1938  04E4  1003               	clrc
+  1939  04E5  0CA3               	rrf	___bmul@multiplier,f
+  1940  04E6  0823               	movf	___bmul@multiplier,w
+  1941  04E7  1D03               	btfss	3,2
+  1942  04E8  2CDC               	goto	l758
+  1943  04E9  0822               	movf	___bmul@product,w
+  1944  04EA  0008               	return
+  1945  04EB                     __end_of___bmul:	
+  1946                           
+  1947                           	psect	text9
+  1948  042D                     __ptext9:	
+  1949 ;; *************** function _ISR *****************
+  1950 ;; Defined at:
+  1951 ;;		line 25 in file "rms.c"
+  1952 ;; Parameters:    Size  Location     Type
+  1953 ;;		None
+  1954 ;; Auto vars:     Size  Location     Type
+  1955 ;;		None
+  1956 ;; Return value:  Size  Location     Type
+  1957 ;;                  1    wreg      void 
+  1958 ;; Registers used:
+  1959 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1960 ;; Tracked objects:
+  1961 ;;		On entry : 0/0
+  1962 ;;		On exit  : 0/0
+  1963 ;;		Unchanged: 0/0
+  1964 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1965 ;;      Params:         0       0       0       0       0
+  1966 ;;      Locals:         0       0       0       0       0
+  1967 ;;      Temps:          5       0       0       0       0
+  1968 ;;      Totals:         5       0       0       0       0
+  1969 ;;Total ram usage:        5 bytes
+  1970 ;; Hardware stack levels used:    1
+  1971 ;; Hardware stack levels required when called:    1
+  1972 ;; This function calls:
+  1973 ;;		i1_process1
+  1974 ;;		i1_process2
+  1975 ;;		i1_process3
+  1976 ;; This function is called by:
+  1977 ;;		Interrupt level 1
+  1978 ;; This function uses a non-reentrant model
+  1979 ;;
+  1980                           
+  1981                           
+  1982                           ;psect for function _ISR
+  1983  042D                     _ISR:	
+  1984                           
+  1985                           ;rms.c: 26: TMR1L=224;
+  1986  042D  30E0               	movlw	224
+  1987  042E  008E               	movwf	14	;volatile
+  1988                           
+  1989                           ;rms.c: 27: TMR1H=177;
+  1990  042F  30B1               	movlw	177
+  1991  0430  008F               	movwf	15	;volatile
+  1992                           
+  1993                           ;rms.c: 28: if(PIR1bits.TMR1IF == 1 ){
+  1994  0431  1C0C               	btfss	12,0	;volatile
+  1995  0432  2C3C               	goto	i1l61
+  1996                           
+  1997                           ;rms.c: 29: PIR1bits.TMR1IF =0;
+  1998  0433  100C               	bcf	12,0	;volatile
+  1999                           
+  2000                           ;rms.c: 30: p1++;
+  2001  0434  3001               	movlw	1
+  2002  0435  00F2               	movwf	??_ISR
+  2003  0436  0872               	movf	??_ISR,w
+  2004  0437  07F9               	addwf	_p1,f
+  2005                           
+  2006                           ;rms.c: 31: p2++;
+  2007  0438  3001               	movlw	1
+  2008  0439  00F2               	movwf	??_ISR
+  2009  043A  0872               	movf	??_ISR,w
+  2010  043B  07F8               	addwf	_p2,f
+  2011  043C                     i1l61:	
+  2012                           
+  2013                           ;rms.c: 33: }
+  2014                           ;rms.c: 38: if((p1 == 1) && (p2 == 2) ){
+  2015  043C  0379               	decf	_p1,w
+  2016  043D  1D03               	btfss	3,2
+  2017  043E  2C56               	goto	i1l1030
+  2018  043F  3002               	movlw	2
+  2019  0440  0678               	xorwf	_p2,w
+  2020  0441  1D03               	btfss	3,2
+  2021  0442  2C56               	goto	i1l1030
+  2022                           
+  2023                           ;rms.c: 39: p1=0;p2=0;
+  2024  0443  01F9               	clrf	_p1
+  2025  0444  01F8               	clrf	_p2
+  2026                           
+  2027                           ;rms.c: 40: pISR[0].pFun();
+  2028  0445  0869               	movf	_pISR,w
+  2029  0446  3E03               	addlw	3
+  2030  0447  0084               	movwf	4
+  2031  0448  1383               	bcf	3,7	;select IRP bank0
+  2032  0449  0800               	movf	0,w
+  2033  044A  120A  118A  2038  120A  118A  	fcall	i1fptable
+  2034                           
+  2035                           ;rms.c: 41: pISR[1].pFun();
+  2036  044F  1283               	bcf	3,5	;RP0=0, select bank0
+  2037  0450  1303               	bcf	3,6	;RP1=0, select bank0
+  2038  0451  0869               	movf	_pISR,w
+  2039  0452  3E08               	addlw	8
+  2040  0453  0084               	movwf	4
+  2041  0454  1383               	bcf	3,7	;select IRP bank0
+  2042  0455  2C75               	goto	L1
+  2043  0456                     i1l1030:	
+  2044                           ;rms.c: 42: }
+  2045                           
+  2046                           
+  2047                           ;rms.c: 48: else if(p1 == 1){
+  2048  0456  0379               	decf	_p1,w
+  2049  0457  1D03               	btfss	3,2
+  2050  0458  2C65               	goto	i1l1038
+  2051                           
+  2052                           ;rms.c: 49: p1=0;
+  2053  0459  01F9               	clrf	_p1
+  2054                           
+  2055                           ;rms.c: 51: pISR[0].flage=1;
+  2056  045A  1283               	bcf	3,5	;RP0=0, select bank0
+  2057  045B  1303               	bcf	3,6	;RP1=0, select bank0
+  2058  045C  0869               	movf	_pISR,w
+  2059  045D  3E04               	addlw	4
+  2060  045E  0084               	movwf	4
+  2061  045F  1383               	bcf	3,7	;select IRP bank0
+  2062  0460  0180               	clrf	0
+  2063  0461  0A80               	incf	0,f
+  2064                           
+  2065                           ;rms.c: 52: pISR[0].pFun();
+  2066  0462  0869               	movf	_pISR,w
+  2067  0463  3E03               	addlw	3
+  2068  0464  2C74               	goto	L2
+  2069  0465                     i1l1038:	
+  2070                           ;rms.c: 54: }
+  2071                           
+  2072                           
+  2073                           ;rms.c: 58: else if(p2 == 2){
+  2074  0465  3002               	movlw	2
+  2075  0466  0678               	xorwf	_p2,w
+  2076  0467  1D03               	btfss	3,2
+  2077  0468  2C7B               	goto	i1l1046
+  2078                           
+  2079                           ;rms.c: 59: p2=0;
+  2080  0469  01F8               	clrf	_p2
+  2081                           
+  2082                           ;rms.c: 60: pISR[1].flage=1;
+  2083  046A  1283               	bcf	3,5	;RP0=0, select bank0
+  2084  046B  1303               	bcf	3,6	;RP1=0, select bank0
+  2085  046C  0869               	movf	_pISR,w
+  2086  046D  3E09               	addlw	9
+  2087  046E  0084               	movwf	4
+  2088  046F  1383               	bcf	3,7	;select IRP bank0
+  2089  0470  0180               	clrf	0
+  2090  0471  0A80               	incf	0,f
+  2091                           
+  2092                           ;rms.c: 61: pISR[1].pFun();
+  2093  0472  0869               	movf	_pISR,w
+  2094  0473  3E08               	addlw	8
+  2095  0474                     L2:	
+  2096  0474  0084               	movwf	4
+  2097  0475                     L1:	
+  2098  0475  0800               	movf	0,w
+  2099  0476  120A  118A  2038  120A  118A  	fcall	i1fptable
+  2100  047B                     i1l1046:	
+  2101                           
+  2102                           ;rms.c: 62: }
+  2103                           ;rms.c: 67: if(p1==5){
+  2104  047B  3005               	movlw	5
+  2105  047C  0679               	xorwf	_p1,w
+  2106  047D  1D03               	btfss	3,2
+  2107  047E  2C9A               	goto	i1l68
+  2108                           
+  2109                           ;rms.c: 68: p1=0;
+  2110  047F  01F9               	clrf	_p1
+  2111                           
+  2112                           ;rms.c: 69: pSTACK->top=2;
+  2113  0480  1283               	bcf	3,5	;RP0=0, select bank0
+  2114  0481  1303               	bcf	3,6	;RP1=0, select bank0
+  2115  0482  0868               	movf	_pSTACK,w
+  2116  0483  3E0F               	addlw	15
+  2117  0484  0084               	movwf	4
+  2118  0485  3002               	movlw	2
+  2119  0486  1383               	bcf	3,7	;select IRP bank0
+  2120  0487  0080               	movwf	0
+  2121  0488  0A84               	incf	4,f
+  2122  0489  3000               	movlw	0
+  2123  048A  0080               	movwf	0
+  2124                           
+  2125                           ;rms.c: 70: pSTACK->proces[0].flage=1;
+  2126  048B  0868               	movf	_pSTACK,w
+  2127  048C  3E04               	addlw	4
+  2128  048D  0084               	movwf	4
+  2129  048E  0180               	clrf	0
+  2130  048F  0A80               	incf	0,f
+  2131                           
+  2132                           ;rms.c: 71: pSTACK->proces[1].flage=1;
+  2133  0490  0868               	movf	_pSTACK,w
+  2134  0491  3E09               	addlw	9
+  2135  0492  0084               	movwf	4
+  2136  0493  0180               	clrf	0
+  2137  0494  0A80               	incf	0,f
+  2138                           
+  2139                           ;rms.c: 72: pSTACK->proces[2].flage=1;
+  2140  0495  0868               	movf	_pSTACK,w
+  2141  0496  3E0E               	addlw	14
+  2142  0497  0084               	movwf	4
+  2143  0498  0180               	clrf	0
+  2144  0499  0A80               	incf	0,f
+  2145  049A                     i1l68:	
+  2146  049A  0876               	movf	??_ISR+4,w
+  2147  049B  1283               	bcf	3,5	;RP0=0, select bank0
+  2148  049C  1303               	bcf	3,6	;RP1=0, select bank0
+  2149  049D  00FF               	movwf	127
+  2150  049E  0875               	movf	??_ISR+3,w
+  2151  049F  008A               	movwf	10
+  2152  04A0  0874               	movf	??_ISR+2,w
+  2153  04A1  0084               	movwf	4
+  2154  04A2  0E73               	swapf	(??_ISR+1)^(0+-128),w
+  2155  04A3  0083               	movwf	3
+  2156  04A4  0EFE               	swapf	126,f
+  2157  04A5  0E7E               	swapf	126,w
+  2158  04A6  0009               	retfie
+  2159  04A7                     __end_of_ISR:	
+  2160                           
+  2161                           	psect	intentry
+  2162  0004                     __pintentry:	
+  2163                           ;incstack = 0
+  2164                           ; Regs used in _ISR: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2165                           
+  2166  0004                     interrupt_function:	
+  2167  007E                     saved_w	set	btemp
+  2168  0004  00FE               	movwf	btemp
+  2169  0005  0E03               	swapf	3,w
+  2170  0006  00F3               	movwf	??_ISR+1
+  2171  0007  0804               	movf	4,w
+  2172  0008  00F4               	movwf	??_ISR+2
+  2173  0009  080A               	movf	10,w
+  2174  000A  00F5               	movwf	??_ISR+3
+  2175  000B  1283               	bcf	3,5	;RP0=0, select bank0
+  2176  000C  1303               	bcf	3,6	;RP1=0, select bank0
+  2177  000D  087F               	movf	btemp+1,w
+  2178  000E  00F6               	movwf	??_ISR+4
+  2179  000F  120A  118A  2C2D   	ljmp	_ISR
+  2180                           
+  2181                           	psect	text10
+  2182  056C                     __ptext10:	
+  2183 ;; *************** function i1_process2 *****************
+  2184 ;; Defined at:
+  2185 ;;		line 33 in file "main.c"
+  2186 ;; Parameters:    Size  Location     Type
+  2187 ;;		None
+  2188 ;; Auto vars:     Size  Location     Type
+  2189 ;;		None
+  2190 ;; Return value:  Size  Location     Type
+  2191 ;;                  1    wreg      void 
+  2192 ;; Registers used:
+  2193 ;;		None
+  2194 ;; Tracked objects:
+  2195 ;;		On entry : 0/0
+  2196 ;;		On exit  : 0/0
+  2197 ;;		Unchanged: 0/0
+  2198 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2199 ;;      Params:         0       0       0       0       0
+  2200 ;;      Locals:         0       0       0       0       0
+  2201 ;;      Temps:          0       0       0       0       0
+  2202 ;;      Totals:         0       0       0       0       0
+  2203 ;;Total ram usage:        0 bytes
+  2204 ;; Hardware stack levels used:    1
+  2205 ;; This function calls:
+  2206 ;;		Nothing
+  2207 ;; This function is called by:
+  2208 ;; This function uses a non-reentrant model
+  2209 ;;
+  2210                           
+  2211                           
+  2212                           ;psect for function i1_process2
+  2213  056C                     i1_process2:	
+  2214                           
+  2215                           ;main.c: 37: _delay((unsigned long)((00)*(4000000UL/4000.0)));
+  2216                           ;main.c: 38: PORTBbits.RB0=0;
+  2217                           
+  2218                           ;incstack = 0
+  2219                           ; Regs used in i1_process2: []
+  2220  056C  1283               	bcf	3,5	;RP0=0, select bank0
+  2221  056D  1303               	bcf	3,6	;RP1=0, select bank0
+  2222  056E  1006               	bcf	6,0	;volatile
+  2223                           
+  2224                           ;main.c: 39: PORTBbits.RB1=1;
+  2225  056F  1486               	bsf	6,1	;volatile
+  2226                           
+  2227                           ;main.c: 40: PORTBbits.RB2=0;
+  2228  0570  1106               	bcf	6,2	;volatile
+  2229  0571  0008               	return
+  2230  0572                     __end_ofi1_process2:	
+  2231                           
+  2232                           	psect	text11
+  2233  053D                     __ptext11:	
+  2234 ;; *************** function i1_process1 *****************
+  2235 ;; Defined at:
+  2236 ;;		line 23 in file "main.c"
+  2237 ;; Parameters:    Size  Location     Type
+  2238 ;;		None
+  2239 ;; Auto vars:     Size  Location     Type
+  2240 ;;		None
+  2241 ;; Return value:  Size  Location     Type
+  2242 ;;                  1    wreg      void 
+  2243 ;; Registers used:
+  2244 ;;		wreg
+  2245 ;; Tracked objects:
+  2246 ;;		On entry : 0/0
+  2247 ;;		On exit  : 0/0
+  2248 ;;		Unchanged: 0/0
+  2249 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2250 ;;      Params:         0       0       0       0       0
+  2251 ;;      Locals:         0       0       0       0       0
+  2252 ;;      Temps:          2       0       0       0       0
+  2253 ;;      Totals:         2       0       0       0       0
+  2254 ;;Total ram usage:        2 bytes
+  2255 ;; Hardware stack levels used:    1
+  2256 ;; This function calls:
+  2257 ;;		Nothing
+  2258 ;; This function is called by:
+  2259 ;; This function uses a non-reentrant model
+  2260 ;;
+  2261                           
+  2262                           
+  2263                           ;psect for function i1_process1
+  2264  053D                     i1_process1:	
+  2265                           
+  2266                           ;main.c: 27: _delay((unsigned long)((4)*(4000000UL/4000.0)));
+  2267                           
+  2268                           ;incstack = 0
+  2269                           ; Regs used in i1_process1: [wreg]
+  2270  053D  3006               	movlw	6
+  2271  053E  00F1               	movwf	??i1_process1+1
+  2272  053F  3030               	movlw	48
+  2273  0540  00F0               	movwf	??i1_process1
+  2274  0541                     u40_27:	
+  2275  0541  0BF0               	decfsz	??i1_process1,f
+  2276  0542  2D41               	goto	u40_27
+  2277  0543  0BF1               	decfsz	??i1_process1+1,f
+  2278  0544  2D41               	goto	u40_27
+  2279  0545  0000               	nop
+  2280                           
+  2281                           ;main.c: 28: PORTBbits.RB0=1;
+  2282  0546  1283               	bcf	3,5	;RP0=0, select bank0
+  2283  0547  1303               	bcf	3,6	;RP1=0, select bank0
+  2284  0548  1406               	bsf	6,0	;volatile
+  2285                           
+  2286                           ;main.c: 29: PORTBbits.RB1=0;
+  2287  0549  1086               	bcf	6,1	;volatile
+  2288                           
+  2289                           ;main.c: 30: PORTBbits.RB2=0;
+  2290  054A  1106               	bcf	6,2	;volatile
+  2291  054B  0008               	return
+  2292  054C                     __end_ofi1_process1:	
+  2293                           
+  2294                           	psect	text12
+  2295  054C                     __ptext12:	
+  2296 ;; *************** function i1_process3 *****************
+  2297 ;; Defined at:
+  2298 ;;		line 43 in file "main.c"
+  2299 ;; Parameters:    Size  Location     Type
+  2300 ;;		None
+  2301 ;; Auto vars:     Size  Location     Type
+  2302 ;;		None
+  2303 ;; Return value:  Size  Location     Type
+  2304 ;;                  1    wreg      void 
+  2305 ;; Registers used:
+  2306 ;;		wreg
+  2307 ;; Tracked objects:
+  2308 ;;		On entry : 0/0
+  2309 ;;		On exit  : 0/0
+  2310 ;;		Unchanged: 0/0
+  2311 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2312 ;;      Params:         0       0       0       0       0
+  2313 ;;      Locals:         0       0       0       0       0
+  2314 ;;      Temps:          2       0       0       0       0
+  2315 ;;      Totals:         2       0       0       0       0
+  2316 ;;Total ram usage:        2 bytes
+  2317 ;; Hardware stack levels used:    1
+  2318 ;; This function calls:
+  2319 ;;		Nothing
+  2320 ;; This function is called by:
+  2321 ;; This function uses a non-reentrant model
+  2322 ;;
+  2323                           
+  2324                           
+  2325                           ;psect for function i1_process3
+  2326  054C                     i1_process3:	
+  2327                           
+  2328                           ;main.c: 47: _delay((unsigned long)((40)*(4000000UL/4000.0)));
+  2329                           
+  2330                           ;incstack = 0
+  2331                           ; Regs used in i1_process3: [wreg]
+  2332  054C  3034               	movlw	52
+  2333  054D  00F1               	movwf	??i1_process3+1
+  2334  054E  30F1               	movlw	241
+  2335  054F  00F0               	movwf	??i1_process3
+  2336  0550                     u41_27:	
+  2337  0550  0BF0               	decfsz	??i1_process3,f
+  2338  0551  2D50               	goto	u41_27
+  2339  0552  0BF1               	decfsz	??i1_process3+1,f
+  2340  0553  2D50               	goto	u41_27
+  2341  0554  2D55               	nop2
+  2342                           
+  2343                           ;main.c: 48: PORTBbits.RB0=0;
+  2344  0555  1283               	bcf	3,5	;RP0=0, select bank0
+  2345  0556  1303               	bcf	3,6	;RP1=0, select bank0
+  2346  0557  1006               	bcf	6,0	;volatile
+  2347                           
+  2348                           ;main.c: 49: PORTBbits.RB1=0;
+  2349  0558  1086               	bcf	6,1	;volatile
+  2350                           
+  2351                           ;main.c: 50: PORTBbits.RB2=1;
+  2352  0559  1506               	bsf	6,2	;volatile
+  2353  055A  0008               	return
+  2354  055B                     __end_ofi1_process3:	
+  2355  0006                     
+  2356                           	psect	functab
+  2357  0029                     __pfunctab:	
+  2358  0029                     __fptable:	
+  2359  0029                     fptable:	
+  2360  0029  00FF               	movwf	(btemp+1)& (0+127)
+  2361  002A  3000               	movlw	high fptable
+  2362  002B  008A               	movwf	10
+  2363  002C  087F               	movf	(btemp+1)& (0+127),w
+  2364  002D  0782               	addwf	2,f
+  2365  002E                     fpbase:	
+  2366  002E  282E               	goto	fpbase	; Call via a null pointer and you will get stuck here.
+  2367  002F                     fp__process3:	
+  2368  002F  120A  118A  2D1E   	ljmp	_process3
+  2369  0032                     fp__process2:	
+  2370  0032  120A  118A  2D66   	ljmp	_process2
+  2371  0035                     fp__process1:	
+  2372  0035  120A  118A  2D0D   	ljmp	_process1
+  2373  0038                     __end_of__fptable:	
+  2374  0038                     __i1fptable:	
+  2375  0038                     i1fptable:	
+  2376  0038  00FF               	movwf	(btemp+1)& (0+127)
+  2377  0039  3000               	movlw	high i1fptable
+  2378  003A  008A               	movwf	10
+  2379  003B  087F               	movf	(btemp+1)& (0+127),w
+  2380  003C  0782               	addwf	2,f
+  2381  003D                     i1fpbase:	
+  2382  003D  283D               	goto	i1fpbase	; Call via a null pointer and you will get stuck here.
+  2383  003E                     fp_i1_process3:	
+  2384  003E  120A  118A  2D4C   	ljmp	i1_process3
+  2385  0041                     fp_i1_process2:	
+  2386  0041  120A  118A  2D6C   	ljmp	i1_process2
+  2387  0044                     fp_i1_process1:	
+  2388  0044  120A  118A  2D3D   	ljmp	i1_process1
+  2389  0047                     __end_of__i1fptable:	
+  2390  007E                     btemp	set	126	;btemp
+  2391  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        15
+    BSS         4
+    Persistent  2
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7      11
+    BANK0            80     72      74
+    BANK1            80      0      15
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    S.proces.pFun	PTR FTN()void  size(1) Largest target is 0
+		 -> process3(), process2(), process1(), 
+
+    main@p.pFun	PTR FTN()void  size(1) Largest target is 0
+		 -> process3(), process2(), process1(), 
+
+    RMS_Scheduler@excute_state.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    RMS_Scheduler@p.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    RMS_Scheduler@ps.proces.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    RMS_Scheduler@ps	PTR struct stack size(1) Largest target is 17
+		 -> main@S(BANK0[17]), 
+
+    RMS_Scheduler@p	PTR struct process size(1) Largest target is 15
+		 -> main@p(BANK0[15]), 
+
+    LCM@p.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    temp.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    LCM@max_per.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    LCM@p	PTR struct process size(1) Largest target is 15
+		 -> main@p(BANK0[15]), 
+
+    LCM@max_per	PTR struct process size(1) Largest target is 15
+		 -> main@p(BANK0[15]), 
+
+    pSTACK.proces.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    pSTACK	PTR struct stack size(1) Largest target is 17
+		 -> NULL(NULL[0]), main@S(BANK0[17]), 
+
+    pISR.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    pISR	PTR struct process size(1) Largest target is 15
+		 -> NULL(NULL[0]), main@p(BANK0[15]), 
+
+    S68process$pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+    main@F1307.pFun	PTR FTN()void  size(1) Largest target is 1
+		 -> process3(), process2(), process1(), 
+
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _ISR->i1_process1
+    _ISR->i1_process3
+
+Critical Paths under _main in BANK0
+
+    _main->_RMS_Scheduler
+    _RMS_Scheduler->_LCM
+    _LCM->___bmul
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                36    36      0    6919
+                                             36 BANK0     36    36      0
+                      _RMS_Scheduler
+                           _init_led
+ ---------------------------------------------------------------------------------
+ (1) _init_led                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _RMS_Scheduler                                       16    14      2    6622
+                                             20 BANK0     16    14      2
+                                _LCM
+                             ___bmul
+                           _process1 *
+                           _process2 *
+                           _process3 *
+                        _timer1_init
+ ---------------------------------------------------------------------------------
+ (2) _timer1_init                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _process3                                             2     2      0       0
+                                              0 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _process2                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _process1                                             2     2      0       0
+                                              0 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _LCM                                                 16    15      1    3188
+                                              4 BANK0     16    15      1
+                             ___bmul
+ ---------------------------------------------------------------------------------
+ (2) ___bmul                                               4     3      1    1686
+                                              0 BANK0      4     3      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _ISR                                                  5     5      0       0
+                                              2 COMMON     5     5      0
+                         i1_process1 *
+                         i1_process2 *
+                         i1_process3 *
+ ---------------------------------------------------------------------------------
+ (5) i1_process3                                           2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (5) i1_process2                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) i1_process1                                           2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 5
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _RMS_Scheduler
+     _LCM
+       ___bmul
+     ___bmul
+     _process1 *
+     _process2 *
+     _process3 *
+     _timer1_init *
+   _init_led
+
+ _ISR (ROOT)
+   i1_process1 *
+   i1_process2 *
+   i1_process3 *
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BANK3               60      0       0       9        0.0%
+BITBANK3            60      0       0       8        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               60      0       0      11        0.0%
+BITBANK2            60      0       0      10        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       F       7       18.8%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50     48      4A       5       92.5%
+BITBANK0            50      0       0       4        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      7       B       1       78.6%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      64      12        0.0%
+ABS                  0      0      64       3        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.45 build -152302408 
+Symbol Table                                                                                   Wed May 16 04:51:00 2018
+
+                        _i 007A                          pc 0002             ___bmul@product 0022  
+              __CFG_CP$OFF 0000                         l29 04D7                         _p1 0079  
+                       _p2 0078              _RMS_Scheduler 0244                         fsr 0004  
+              __CFG_LVP$ON 0000                        l762 04E2                        l850 0068  
+                      l852 023F                        l758 04DC                        l854 0050  
+                      l848 023A                        l990 0348                        l986 025C  
+                      _GIE 005F                        l988 0343                        _LCM 0047  
+                      u310 04B1               __CFG_CPD$OFF 0000                        _ISR 042D  
+                      u387 0513                        u397 0524                fp__process1 0035  
+              fp__process2 0032                fp__process3 002F                        fsr0 0004  
+                      _top 0077                        indf 0000                       ?_LCM 0024  
+                     LCM@i 0032                       LCM@j 002B                       LCM@p 0033  
+                     ?_ISR 0070                       i1l61 043C                       i1l68 049A  
+             __CFG_WRT$OFF 0000                       _pISR 0069                       _main 04A7  
+                     btemp 007E              __CFG_BOREN$ON 0000                       start 0012  
+               i1_process1 053D                 i1_process2 056C                 i1_process3 054C  
+        ___bmul@multiplier 0023                      ??_LCM 0025                      ??_ISR 0072  
+           ?_RMS_Scheduler 0034                      ?_main 0070              __CFG_WDTE$OFF 0000  
+                    u40_27 0541                      _TMR1H 000F                      _TMR1L 000E  
+                    u41_27 0550                      main@S 0057                      fpbase 002E  
+                    main@p 0048                      pclath 000A                      status 0003  
+                    wtemp0 007E            __initialization 0015               __end_of_main 04D8  
+                   ??_main 0044                     i1l1030 0456                     i1l1038 0465  
+                   i1l1046 047B                 __i1fptable 0038            RMS_Scheduler@ps 0034  
+         __end_of__fptable 0038             __CFG_PWRTE$OFF 0000                ?i1_process1 0070  
+              ?i1_process2 0070                ?i1_process3 0070            ??_RMS_Scheduler 0036  
+                   _pSTACK 0068                     ___bmul 04D8               ?_timer1_init 0070  
+         __end_of_init_led 0566  RMS_Scheduler@excute_state 003E                     fptable 0029  
+                   fptotal 0006                     saved_w 007E           __end_of_process1 051E  
+         __end_of_process2 056C           __end_of_process3 052E            __CFG_FOSC$EXTRC 0000  
+  __end_of__initialization 0025        ___bmul@multiplicand 0020             __pcstackCOMMON 0070  
+             __pidataBANK1 052E        __size_ofi1_process1 000F        __size_ofi1_process2 0006  
+      __size_ofi1_process3 000F                    LCM@temp 002D                 __pmaintext 04A7  
+                  ?___bmul 0020                 __pintentry 0004                    i1fpbase 003D  
+                ?_init_led 0070                  ?_process1 0070                  ?_process2 0070  
+                ?_process3 0070            __size_of___bmul 0013       __size_of_timer1_init 0011  
+                  __ptext1 055B                    __ptext2 0244                    __ptext3 04FC  
+                  __ptext4 0566                    __ptext5 050D                    __ptext6 051E  
+                  __ptext7 0047                    __ptext8 04D8                    __ptext9 042D  
+      __size_of__i1fptable 000F               __size_of_LCM 01FD               __size_of_ISR 007A  
+                _T1CONbits 0010   RMS_Scheduler@num_process 0035       end_of_initialization 0025  
+               ??_init_led 0020               ??i1_process1 0070               ??i1_process2 0070  
+             ??i1_process3 0070                 ??_process1 0020                 ??_process2 0020  
+               ??_process3 0020                  _PORTBbits 0006                  _TRISBbits 0086  
+       __end_ofi1_process1 054C         __end_ofi1_process2 0572         __end_ofi1_process3 055B  
+               LCM@max_per 002A      __end_of_RMS_Scheduler 042D             __end_of___bmul 04EB  
+      start_initialization 0015                __end_of_LCM 0244                __end_of_ISR 04A7  
+           RMS_Scheduler@i 0043             RMS_Scheduler@p 003D                   ??___bmul 0021  
+               init_fetch0 04EB                __pdataBANK1 00A0         __end_of__i1fptable 0047  
+              __pbssCOMMON 0077                  ___latbits 0002              __pcstackBANK0 0020  
+                 LCM@index 002C          __size_of__fptable 000F                  __pnvBANK0 0068  
+        __size_of_init_led 000B                  __pfunctab 0029              fp_i1_process1 0044  
+            fp_i1_process2 0041              fp_i1_process3 003E          __size_of_process1 0011  
+        __size_of_process2 0006          __size_of_process3 0010          interrupt_function 0004  
+                 _PIE1bits 008C                   _PIR1bits 000C                  main@F1307 00A0  
+            ??_timer1_init 0020                   i1fptable 0038                   i1fptotal 0006  
+           LCM@num_process 0024        __end_of_timer1_init 050D                   __fptable 0029  
+                 __ptext10 056C                   __ptext11 053D                   __ptext12 054C  
+                 _init_led 055B              __size_of_main 0031                   _process1 050D  
+                 _process2 0566                   _process3 051E                 _INTCONbits 000B  
+                 init_ram0 04EF                   intlevel1 0029     __size_of_RMS_Scheduler 01E9  
+              _timer1_init 04FC  
